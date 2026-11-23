@@ -1,0 +1,110 @@
+---
+layout: default
+---
+<section class="section-hero">
+    <!-- Decorative: the logo carries the hero's meaning. images/og-image.png is
+         a screenshot of this hero, so re-render it when the hero changes. -->
+    <img class="hero-photo" src="{{ '/images/hero-winter.webp' | relative_url }}" alt="" width="1536" height="1024" fetchpriority="high" decoding="async">
+
+    <div class="container hero-inner">
+        <div class="hero-copy">
+            <p class="hero-eyebrow">Independent game studio</p>
+            <h1>Games built <span>up north.</span></h1>
+            <p class="tagline">We’re a two-person studio making games for mobile, console, and board.fun.</p>
+            <div class="cta-row">
+                <a class="btn-primary" href="#updates">Read the devlog</a>
+                <a class="btn-ghost" href="#team">Meet the studio</a>
+            </div>
+        </div>
+
+        <img class="hero-logo" src="{{ '/images/logo.webp' | relative_url }}" alt="UpNorth Gaming logo: a game controller inside a gold compass, above ice-capped lettering" width="720" height="746" fetchpriority="high" decoding="async">
+    </div>
+</section>
+
+<section class="section" id="platforms">
+    <div class="container">
+        <div class="section-head">
+            <p class="chip">Platforms</p>
+            <h2>Where we build</h2>
+        </div>
+
+        <div class="details">
+            <div class="detail">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                    <path d="M12 18h.01"/>
+                </svg>
+                <h3>Mobile</h3>
+                <p>Games for phones and tablets.</p>
+            </div>
+            <div class="detail">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M6 11h4M8 9v4M15 12h.01M18 10h.01"/>
+                    <path d="M17.32 5H6.68a4 4 0 0 0-3.98 3.59l-.9 8.12A2 2 0 0 0 3.79 19c.85 0 1.62-.48 2-1.24L7 15.5h10l1.21 2.26A2.24 2.24 0 0 0 20.21 19a2 2 0 0 0 1.99-2.29l-.9-8.12A4 4 0 0 0 17.32 5z"/>
+                </svg>
+                <h3>Console</h3>
+                <p>Games built around the controller.</p>
+            </div>
+            <div class="detail">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="3" ry="3"/>
+                    <path d="M8 8h.01M16 8h.01M12 12h.01M8 16h.01M16 16h.01"/>
+                </svg>
+                <h3>board.fun</h3>
+                <p>Games for the digital tabletop.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="updates">
+    <div class="container">
+        <div class="section-head">
+            <p class="chip">Devlog</p>
+            <h2>Development log</h2>
+            <p>Screenshots, gameplay clips, and notes from the studio as our games take shape.</p>
+        </div>
+
+        {%- if site.posts.size > 0 %}
+        <div class="update-grid">
+            {%- for post in site.posts limit: 3 %}
+            {% include update-card.html post=post %}
+            {%- endfor %}
+        </div>
+        {%- if site.posts.size > 3 %}
+        <p class="more-link"><a href="{{ '/updates/' | relative_url }}">All {{ site.posts.size }} updates &rarr;</a></p>
+        {%- endif %}
+        {%- else %}
+        <p class="empty-state">Development updates, screenshots, and gameplay clips will appear here as we share them.</p>
+        {%- endif %}
+    </div>
+</section>
+
+<section class="section" id="team">
+    <div class="container">
+        <div class="section-head">
+            <p class="chip">Studio</p>
+            <h2>Meet the developers</h2>
+            <p>UpNorth Gaming is an independent, two-person game studio. We develop for handheld screens, consoles, and the digital tabletop.</p>
+        </div>
+
+        <div class="team-grid">
+            <article class="developer">
+                <div class="avatar" aria-hidden="true">AF</div>
+                <div>
+                    <h3>Aidan Follestad</h3>
+                    <p>Aidan is a full-stack developer at Square and an avid PS5 gamer. He enjoys photography and loves riding his Triumph Street Triple RS.</p>
+                    <p class="favorites"><strong>Favorite games</strong> GTA 6, Marvel Rivals, and Zelda</p>
+                </div>
+            </article>
+            <article class="developer">
+                <div class="avatar" aria-hidden="true">AC</div>
+                <div>
+                    <h3>Anthony Cole</h3>
+                    <p>Anthony is a girl dad and an avid PS5 gamer. He enjoys photography and loves riding his Indian Scout Sport.</p>
+                    <p class="favorites"><strong>Favorite games</strong> 7 Days To Die, GTA 6, and Call of Duty</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>

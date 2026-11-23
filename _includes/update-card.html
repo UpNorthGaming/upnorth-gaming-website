@@ -1,0 +1,23 @@
+{%- comment -%}
+    One devlog post as a card that links to it. Takes `post`, and `level`, the
+    title's heading level (default 3), so it nests under the page's headings.
+    Its first image is the cover, or the emblem without one; the summary is its
+    description or the body's first paragraph.
+{%- endcomment -%}
+{%- assign level = include.level | default: 3 -%}
+<a class="update-card" href="{{ include.post.url | relative_url }}">
+    {%- assign cover = include.post.images | first %}
+    {%- if cover %}
+    <img class="update-card-cover" src="{{ cover.src | prepend: '/images/devlog/' | relative_url }}" alt="{{ cover.alt | escape }}" width="{{ cover.width }}" height="{{ cover.height }}" loading="lazy" decoding="async">
+    {%- else %}
+    {%- comment -%} A post without images gets the emblem on navy, so cards in a row match. {%- endcomment -%}
+    <div class="update-card-cover update-card-cover-empty">
+        <img src="{{ '/images/logo-mark.png' | relative_url }}" alt="" width="95" height="80" loading="lazy" decoding="async">
+    </div>
+    {%- endif %}
+    <div class="update-card-body">
+        {% include update-meta.html post=include.post %}
+        <h{{ level }} class="update-card-title">{{ include.post.title | escape }}</h{{ level }}>
+        <p class="update-card-summary">{{ include.post.description | default: include.post.excerpt | strip_html | normalize_whitespace | truncate: 140 | escape }}</p>
+    </div>
+</a>

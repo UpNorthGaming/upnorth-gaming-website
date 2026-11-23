@@ -1,0 +1,35 @@
+/* Dark theme: night up north, the navy-black of the hero's winter sky with
+   the logo's cream for text, its gold for fills and its ice for links.
+   Don't forget to update the theme colors in scripts/dark-mode.js and the
+   theme-color metas in _includes/head.html if --bg changes, and re-render
+   images/og-image.png, which shows the dark theme. */
+
+:root {
+    color-scheme: dark;
+
+    --bg: #0b1421;
+    /* The logo's cream: 16.4:1 on --bg, 15:1 on --surface. */
+    --fg: #f8f1e3;
+    /* 10.3:1 on --bg, 9.3:1 on --surface. */
+    --secondary: #b3c3d3;
+    /* The logo's gold, for fills. --bg text on it holds 9.2:1. */
+    --accent: #efa933;
+    --on-accent: #0b1421;
+    /* The logo's ice, lifted: 13.8:1 on --bg, 12.6:1 on --surface. */
+    --accent-text: #b8e5ff;
+    --chip-bg: #efa933;
+    --chip-fg: #0b1421;
+    --surface: #111e2e;
+    /* Dividers that only separate. */
+    --hairline: rgba(248, 241, 227, .12);
+    /* Borders that outline a control or tag, 3.5:1 on --bg and --surface. */
+    --hairline-strong: rgba(248, 241, 227, .4);
+}
+
+html {
+    background: var(--bg);
+}
+
+.theme-toggle .icon-sun {
+    display: block;
+}

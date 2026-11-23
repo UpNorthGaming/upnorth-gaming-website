@@ -1,0 +1,25 @@
+<header class="site-header">
+    <div class="container">
+        <a class="brand" href="{{ '/' | relative_url }}">
+            <img src="{{ '/images/logo-mark.png' | relative_url }}" alt="" width="95" height="80" decoding="async">
+            <span>UpNorth Gaming</span>
+        </a>
+
+        <nav class="top-nav" aria-label="Main">
+            <a class="top-link" href="{{ '/#platforms' | relative_url }}">Platforms</a>
+            <a class="top-link" href="{{ '/updates/' | relative_url }}"{% if page.url == '/updates/' %} aria-current="page"{% endif %}>Devlog</a>
+            <a class="top-link" href="{{ '/#team' | relative_url }}">Studio</a>
+        </nav>
+
+        <!-- Its label names the on state; aria-pressed carries it. -->
+        <button class="top-btn theme-toggle" id="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false">
+            <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="5"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+            <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+        </button>
+    </div>
+</header>

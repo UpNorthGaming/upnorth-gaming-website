@@ -1,0 +1,15 @@
+<footer class="site-footer">
+    <p>
+        &copy; {{ site.time | date: "%Y" }} UpNorth Gaming
+        &#8226; <a href="{{ '/updates/' | relative_url }}">Devlog</a>
+        &#8226; <a href="{{ '/feed.xml' | relative_url }}">RSS feed</a>
+    </p>
+</footer>
+
+<!-- Do NOT rename to a generic "back to top" name: ad blockers' cosmetic
+     filters hide back-to-top, jump-to-top, and scroll-to-top. -->
+<button class="overview-return" id="overview-return" type="button" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+</button>

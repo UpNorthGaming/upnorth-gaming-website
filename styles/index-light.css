@@ -1,0 +1,35 @@
+/* Light theme: snow at noon, an ice-tinted white with the logo's navy for
+   text and its gold for fills.
+   Don't forget to update the theme colors in scripts/dark-mode.js and the
+   theme-color metas in _includes/head.html if --bg changes. */
+
+:root {
+    color-scheme: light;
+
+    --bg: #f4f8fb;
+    /* The logo's navy: 13:1 on --bg. */
+    --fg: #0a2f4a;
+    /* 6.1:1 on --bg, 6.5:1 on --surface. */
+    --secondary: #46607a;
+    /* The logo's gold, for fills only. Navy text on it holds 6.8:1. */
+    --accent: #efa933;
+    --on-accent: #0a2f4a;
+    /* The logo's ice blue, deepened for links, focus rings and hover: 6.4:1 on
+       --bg, 6.8:1 on --surface. */
+    --accent-text: #1b5f8f;
+    --chip-bg: #efa933;
+    --chip-fg: #0a2f4a;
+    --surface: #ffffff;
+    /* Dividers that only separate. */
+    --hairline: rgba(10, 47, 74, .12);
+    /* Borders that outline a control or tag, 3.4:1 on --bg and --surface. */
+    --hairline-strong: rgba(10, 47, 74, .55);
+}
+
+html {
+    background: var(--bg);
+}
+
+.theme-toggle .icon-moon {
+    display: block;
+}

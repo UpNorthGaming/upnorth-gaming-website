@@ -1,0 +1,52 @@
+title: UpNorth Gaming
+description: >-
+  UpNorth Gaming is a two-person independent game studio: we build games for
+  mobile, console, and board.fun, and share how they're made in our devlog.
+url: https://upnorthgaming.com
+baseurl: ""
+lang: en
+timezone: America/Chicago
+
+markdown: kramdown
+# GitHub Pages applies its Primer theme unless told otherwise, which only adds
+# an unused assets/css/style.css; every page here uses its own layouts.
+theme: null
+permalink: /updates/:year/:month/:day/:title/
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+# Both are on GitHub Pages' plugin allowlist. jekyll-feed writes the devlog's
+# Atom feed to /feed.xml; jekyll-sitemap writes /sitemap.xml.
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+feed:
+  path: feed.xml
+
+# Everything here stays out of the published site. Docs are named one by one,
+# because a "**/*.md" pattern would also drop the devlog posts in _posts/.
+# Add any new unpublished file or AGENTS.md here.
+exclude:
+  - .agents/
+  - .claude/
+  - .codex/
+  - brand/
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - README.md
+  - AGENTS.md
+  - CLAUDE.md
+  - _layouts/AGENTS.md
+  - _layouts/CLAUDE.md
+  - _posts/AGENTS.md
+  - _posts/CLAUDE.md
+  - styles/AGENTS.md
+  - styles/CLAUDE.md
+  - scripts/AGENTS.md
+  - scripts/CLAUDE.md

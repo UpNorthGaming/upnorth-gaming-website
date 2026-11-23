@@ -1,0 +1,802 @@
+/* Theme-independent layout and components. Colors come only from the tokens
+   in index-light.css and index-dark.css, except in the hero, which sits on the
+   same night photo in both themes and so keeps fixed colors of its own.
+
+   The look is deliberately flat: solid fills and hairline borders, with no
+   glass, glows, gradients, or decorative shadows. */
+
+/* Tokens ----------------------------------------------------------------- */
+
+:root {
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --fab-size: 2.5rem;
+    --fab-inset: 1.5rem;
+    --radius: .75rem;
+    /* The logo's colors, sampled from brand/logo-master.png. They paint the
+       hero, the avatars, and the touch icon the same way in both themes. */
+    --brand-navy: #0a2f4a;
+    --brand-gold: #efa933;
+    --brand-cream: #f8f1e3;
+    --brand-ice: #b8e5ff;
+}
+
+/* Base ------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--fg);
+    background: var(--bg);
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+picture {
+    display: block;
+}
+
+a {
+    color: var(--accent-text);
+    text-underline-offset: .2em;
+}
+
+a:focus-visible,
+button:focus-visible,
+iframe:focus-visible {
+    outline: 2px solid var(--accent-text);
+    outline-offset: 2px;
+}
+
+/* Hidden until a keyboard user tabs to it. */
+.skip-link {
+    position: absolute;
+    top: .75rem;
+    left: .75rem;
+    z-index: 400;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-weight: 600;
+    text-decoration: none;
+    transform: translateY(-200%);
+}
+
+.skip-link:focus {
+    transform: none;
+}
+
+.container {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/* Header ----------------------------------------------------------------- */
+
+.site-header {
+    border-bottom: 1px solid var(--hairline);
+    background: var(--bg);
+}
+
+/* Wraps rather than shrinking, so on a narrow phone or with enlarged text the
+   links drop to a second row instead of running off the page. */
+.site-header .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem 1rem;
+    min-height: 4rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    color: var(--fg);
+    font-weight: 700;
+    letter-spacing: -.01em;
+    text-decoration: none;
+}
+
+.brand img {
+    width: auto;
+    height: 2.5rem;
+}
+
+.top-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .25rem;
+    margin-left: auto;
+}
+
+.top-link {
+    padding: .5rem .65rem;
+    border-radius: .5rem;
+    color: var(--secondary);
+    font-size: .95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color .2s ease, background-color .2s ease;
+}
+
+.top-link[aria-current="page"] {
+    color: var(--fg);
+}
+
+.top-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    color: var(--secondary);
+    cursor: pointer;
+    transition: color .2s ease, background-color .2s ease;
+}
+
+/* Each theme sheet shows the icon for the theme a click switches to. */
+.theme-toggle svg {
+    display: none;
+}
+
+/* Hero ------------------------------------------------------------------- */
+
+/* The night photo fills the hero in both themes, under one flat navy scrim at
+   .65. That's what the hero's text needs: over the brightest .5% of the photo
+   (its frozen lake, #adcceb) the cream holds 7.1:1 and the ice 6:1. */
+.section-hero {
+    position: relative;
+    overflow: hidden;
+    overflow: clip;
+    padding: 5.5rem 0;
+    /* The scrim's navy, shown until the photo loads. */
+    background: #08111e;
+    color: var(--brand-cream);
+}
+
+/* The page's focus color is too dark for the photo in the light theme, so the
+   hero's controls use the ice, 5.7:1 or better over the scrim. */
+.section-hero a:focus-visible {
+    outline-color: var(--brand-ice);
+}
+
+.hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 58%;
+}
+
+.section-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 17, 30, .65);
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+    align-items: center;
+    gap: 3rem;
+}
+
+.hero-eyebrow {
+    margin-bottom: 1rem;
+    color: var(--brand-ice);
+    font-size: .875rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+/* min(2.75rem, 20vw) keeps "north." on one line on a 320px phone at 200%
+   text, and 2.75rem there at normal size. */
+.hero-copy h1 {
+    font-size: clamp(min(2.75rem, 20vw), 7vw, 4.25rem);
+    font-weight: 700;
+    letter-spacing: -.035em;
+    line-height: 1.05;
+}
+
+.hero-copy h1 span {
+    display: block;
+    color: var(--brand-ice);
+}
+
+.tagline {
+    max-width: 30rem;
+    margin-top: 1.25rem;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    line-height: 1.55;
+    text-wrap: balance;
+}
+
+.hero-logo {
+    width: min(100%, 22rem);
+    justify-self: center;
+}
+
+/* Buttons ---------------------------------------------------------------- */
+
+.cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 2rem;
+}
+
+.btn-primary,
+.btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    min-height: 3rem;
+    max-width: 100%;
+    padding: .4rem 1.3rem;
+    border: 1px solid transparent;
+    border-radius: .55rem;
+    font-size: .95rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+
+/* The logo's gold with navy text, 6.8:1, in both themes. */
+.btn-primary {
+    background: var(--brand-gold);
+    color: var(--brand-navy);
+}
+
+/* The hero's secondary button: cream text and a cream hairline on the scrim. */
+.btn-ghost {
+    border-color: rgba(248, 241, 227, .55);
+    color: var(--brand-cream);
+}
+
+/* Sections --------------------------------------------------------------- */
+
+.section {
+    padding: 5rem 0;
+}
+
+.section + .section {
+    border-top: 1px solid var(--hairline);
+}
+
+.section-head {
+    max-width: 42rem;
+    margin-bottom: 2.5rem;
+}
+
+.chip {
+    display: inline-flex;
+    margin-bottom: 1rem;
+    padding: .3rem .85rem;
+    border-radius: 999px;
+    background: var(--chip-bg);
+    color: var(--chip-fg);
+    font-size: .875rem;
+    font-weight: 600;
+}
+
+.section-head h2,
+.page-head h1 {
+    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -.03em;
+    line-height: 1.1;
+}
+
+.section-head p:not(.chip),
+.page-head p:not(.chip) {
+    margin-top: 1rem;
+    color: var(--secondary);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-wrap: pretty;
+}
+
+/* Platforms -------------------------------------------------------------- */
+
+/* Plain columns between hairlines rather than cards, since nothing here is a
+   link. */
+.details {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 2.5rem;
+}
+
+.detail {
+    padding: .25rem 1.5rem;
+}
+
+.detail:first-child {
+    padding-left: 0;
+}
+
+.detail:not(:first-child) {
+    border-left: 1px solid var(--hairline);
+}
+
+.detail svg {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-bottom: .9rem;
+    color: var(--accent-text);
+}
+
+.detail h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.detail p {
+    margin-top: .35rem;
+    color: var(--secondary);
+    text-wrap: pretty;
+}
+
+/* Devlog ----------------------------------------------------------------- */
+
+.update-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+    gap: 1.25rem;
+}
+
+/* A whole card is one link to its post. */
+.update-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--fg);
+    text-decoration: none;
+    transition: border-color .2s ease;
+}
+
+.update-card-cover {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-bottom: 1px solid var(--hairline);
+}
+
+.update-card-cover-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--brand-navy);
+}
+
+.update-card-cover-empty img {
+    width: auto;
+    height: 3.5rem;
+}
+
+.update-card-body {
+    padding: 1.25rem;
+}
+
+.update-card-title {
+    margin-top: .5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    line-height: 1.3;
+}
+
+.update-card-summary {
+    margin-top: .5rem;
+    color: var(--secondary);
+    text-wrap: pretty;
+}
+
+.update-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .35rem .6rem;
+    color: var(--secondary);
+    font-size: .875rem;
+}
+
+.platform-tag {
+    padding: .1rem .55rem;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 999px;
+    color: var(--fg);
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.empty-state {
+    padding: 1.5rem;
+    border: 1px dashed var(--hairline-strong);
+    border-radius: var(--radius);
+    color: var(--secondary);
+}
+
+.more-link {
+    margin-top: 2rem;
+}
+
+.more-link a {
+    font-weight: 600;
+}
+
+/* Team ------------------------------------------------------------------- */
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.developer {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    background: var(--surface);
+}
+
+/* Initials stand in until there's a photo: drop an <img> inside instead,
+   square-cropped, and it fills the circle. Navy and gold in both themes,
+   6.8:1. */
+.avatar {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    overflow: hidden;
+    border-radius: 50%;
+    background: var(--brand-navy);
+    color: var(--brand-gold);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.developer h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+}
+
+.developer p {
+    margin-top: .5rem;
+    color: var(--secondary);
+    text-wrap: pretty;
+}
+
+.developer .favorites {
+    margin-top: 1rem;
+}
+
+.favorites strong {
+    display: block;
+    color: var(--fg);
+    font-size: .875rem;
+    font-weight: 600;
+}
+
+/* Pages ------------------------------------------------------------------ */
+
+.page-head {
+    padding: 4rem 0 2.5rem;
+}
+
+.page-body {
+    padding-bottom: 5rem;
+}
+
+/* Post ------------------------------------------------------------------- */
+
+.post {
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: 3rem 1.25rem 5rem;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.post h1 {
+    margin-top: .75rem;
+    font-size: clamp(min(1.9rem, 10vw), 4.5vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -.03em;
+    line-height: 1.1;
+}
+
+.prose {
+    margin-top: 2rem;
+    font-size: 1.075rem;
+    line-height: 1.7;
+}
+
+.prose > * + * {
+    margin-top: 1.1em;
+}
+
+.prose h2,
+.prose h3 {
+    margin-top: 1.8em;
+    letter-spacing: -.02em;
+    line-height: 1.25;
+}
+
+.prose ul,
+.prose ol {
+    padding-left: 1.4em;
+}
+
+.prose code {
+    padding: .1em .35em;
+    border-radius: .3rem;
+    background: var(--hairline);
+    font-size: .9em;
+}
+
+.prose blockquote {
+    margin-left: 0;
+    padding-left: 1rem;
+    border-left: 3px solid var(--hairline-strong);
+    color: var(--secondary);
+}
+
+/* Black behind the player, like YouTube's own letterbox, in both themes. */
+.post-video {
+    margin-top: 2rem;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    background: #000;
+}
+
+.post-video iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.post-media {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.post-media img {
+    width: 100%;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+}
+
+/* Footer ----------------------------------------------------------------- */
+
+/* The bottom padding clears the scroll-to-top button. */
+.site-footer {
+    padding: 3rem 1.25rem calc(var(--fab-inset) + var(--fab-size) + 1rem);
+    border-top: 1px solid var(--hairline);
+    color: var(--secondary);
+    font-size: .875rem;
+    text-align: center;
+}
+
+.site-footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Scroll to top ---------------------------------------------------------- */
+
+/* Do NOT rename to a generic "back to top" name: ad blockers' cosmetic filters
+   hide back-to-top, jump-to-top, and scroll-to-top. */
+.overview-return {
+    position: fixed;
+    right: var(--fab-inset);
+    bottom: var(--fab-inset);
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--fab-size);
+    height: var(--fab-size);
+    padding: 0;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--fg);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(.5rem);
+    transition: opacity .25s ease, transform .25s ease, visibility .25s ease, border-color .2s ease;
+}
+
+.overview-return.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+/* Hover ------------------------------------------------------------------ */
+
+@media (hover: hover) and (pointer: fine) {
+    .top-link:hover,
+    .top-btn:hover {
+        background: var(--hairline);
+        color: var(--fg);
+    }
+
+    /* The gold, lightened; navy on it holds 8.3:1. */
+    .btn-primary:hover {
+        background: #f6c060;
+    }
+
+    .btn-ghost:hover {
+        border-color: var(--brand-cream);
+        background: rgba(248, 241, 227, .1);
+    }
+
+    .update-card:hover,
+    .overview-return:hover {
+        border-color: var(--accent-text);
+    }
+
+    .update-card:hover .update-card-title {
+        color: var(--accent-text);
+    }
+
+    .site-footer a:hover {
+        color: var(--accent-text);
+    }
+}
+
+/* Responsive ------------------------------------------------------------- */
+
+@media (max-width: 820px) {
+    .section {
+        padding: 4rem 0;
+    }
+
+    .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.5rem;
+    }
+
+    .hero-logo {
+        order: -1;
+        width: min(60%, 15rem);
+        justify-self: start;
+    }
+
+    .team-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* In em, so enlarged text stacks the columns before they get too narrow. */
+@media (max-width: 45em) {
+    .details {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 0;
+    }
+
+    .detail,
+    .detail:first-child {
+        padding: 1.25rem 0;
+    }
+
+    .detail:not(:first-child) {
+        border-left: none;
+        border-top: 1px solid var(--hairline);
+    }
+}
+
+@media (max-width: 600px) {
+    .section-hero {
+        padding: 3.5rem 0;
+    }
+
+    .page-head {
+        padding-top: 3rem;
+    }
+
+    .developer {
+        flex-direction: column;
+    }
+}
+
+/* Phones, or enlarged text: the theme toggle stays beside the brand and the
+   links take a row of their own, rather than wrapping one at a time. */
+@media (max-width: 40em) {
+    .theme-toggle {
+        margin-left: auto;
+    }
+
+    .top-nav {
+        order: 1;
+        flex-basis: 100%;
+        margin-left: -.65rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+    }
+
+    .overview-return {
+        transform: none;
+    }
+}

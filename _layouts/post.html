@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<article class="post">
+    <a class="back-link" href="{{ '/updates/' | relative_url }}">&larr; All updates</a>
+    {% include update-meta.html post=page %}
+    <h1>{{ page.title | escape }}</h1>
+
+    <div class="prose">
+        {{ content }}
+    </div>
+
+    {%- if page.youtube %}
+    {% include youtube.html id=page.youtube title=page.title %}
+    {%- endif %}
+
+    {%- if page.images and page.images.size > 0 %}
+    <div class="post-media">
+        {%- for image in page.images %}
+        <img src="{{ image.src | prepend: '/images/devlog/' | relative_url }}" alt="{{ image.alt | escape }}" width="{{ image.width }}" height="{{ image.height }}" loading="lazy" decoding="async">
+        {%- endfor %}
+    </div>
+    {%- endif %}
+</article>

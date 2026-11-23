@@ -1,0 +1,9 @@
+{%- comment -%}
+    A YouTube video from its bare id (the part after "v=" in a watch URL).
+    youtube-nocookie.com sets no cookies until the visitor plays it. Takes `id`
+    and `title`.
+{%- endcomment -%}
+<div class="post-video">
+    <iframe src="https://www.youtube-nocookie.com/embed/{{ include.id | uri_escape }}" title="{{ include.title | escape }}" width="1280" height="720" loading="lazy"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>

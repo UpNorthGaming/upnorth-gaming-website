@@ -1,0 +1,24 @@
+---
+layout: default
+title: Development log
+description: Development updates, screenshots, and gameplay clips from UpNorth Gaming, a two-person independent game studio.
+---
+<div class="container">
+    <div class="page-head">
+        <p class="chip">Devlog</p>
+        <h1>Development log</h1>
+        <p>Screenshots, gameplay clips, and notes from the studio as our games take shape, newest first.</p>
+    </div>
+
+    <div class="page-body">
+        {%- if site.posts.size > 0 %}
+        <div class="update-grid">
+            {%- for post in site.posts %}
+            {% include update-card.html post=post level=2 %}
+            {%- endfor %}
+        </div>
+        {%- else %}
+        <p class="empty-state">Development updates, screenshots, and gameplay clips will appear here as we share them.</p>
+        {%- endif %}
+    </div>
+</div>

@@ -1,0 +1,7 @@
+{%- comment -%} A post's date and, if set, its platform. Takes `post`. {%- endcomment -%}
+<p class="update-meta">
+    <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%B %-d, %Y" }}</time>
+    {%- if include.post.platform %}
+    <span class="platform-tag">{{ include.post.platform | escape }}</span>
+    {%- endif %}
+</p>
