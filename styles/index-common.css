@@ -160,10 +160,6 @@ iframe:focus-visible {
     transition: color .2s ease, background-color .2s ease;
 }
 
-.top-link[aria-current="page"] {
-    color: var(--fg);
-}
-
 .top-btn {
     display: inline-flex;
     align-items: center;
@@ -188,12 +184,14 @@ iframe:focus-visible {
 
 /* The night photo fills the hero in both themes, under one flat navy scrim at
    .65. That's what the hero's text needs: over the brightest .5% of the photo
-   (its frozen lake, #adcceb) the cream holds 7.1:1 and the ice 6:1. */
+   (its frozen lake, #adcceb) the cream holds 7.1:1 and the ice 6:1.
+   --hero-pad is its own padding, which the header over it adds to. */
 .section-hero {
+    --hero-pad: 5.5rem;
     position: relative;
     overflow: hidden;
     overflow: clip;
-    padding: 5.5rem 0;
+    padding: var(--hero-pad) 0;
     /* The scrim's navy, shown until the photo loads. */
     background: #08111e;
     color: var(--brand-cream);
@@ -794,7 +792,7 @@ iframe:focus-visible {
 
 @media (max-width: 600px) {
     .section-hero {
-        padding: 3.5rem 0;
+        --hero-pad: 3.5rem;
     }
 
     .page-head {
@@ -806,10 +804,11 @@ iframe:focus-visible {
     }
 }
 
-/* Narrow phones, or enlarged text: the theme toggle stays beside the brand
-   and the links take a row of their own, rather than wrapping one at a time.
-   One row needs about 19rem; 22em leaves room for wider system fonts. */
-@media (max-width: 22em) {
+/* Phones, or enlarged text: the theme toggle stays beside the brand and the
+   links take a row of their own, rather than wrapping one at a time. One row
+   holding all three needs about 26rem; 29em leaves room for wider system
+   fonts. */
+@media (max-width: 29em) {
     .theme-toggle {
         margin-left: auto;
     }
@@ -821,11 +820,12 @@ iframe:focus-visible {
     }
 }
 
-/* Wide enough to hold one row, the home page's header lies over the top of
-   the hero's photo, so the two read as one. Narrower, its links take rows of
-   their own, so its height isn't fixed and it stays above the hero instead.
-   Its colors are the hero's, fixed in both themes. Keep this query the
-   inverse of the one above. */
+/* Wide enough for the links to fit one row of their own, the home page's
+   header lies over the top of the hero's photo, so the two read as one. The
+   links' row needs about 18rem; 22em leaves room for wider system fonts.
+   Narrower, the links themselves wrap, so the header's height isn't known and
+   it stays above the hero instead. Its colors are the hero's, fixed in both
+   themes. */
 @media not all and (max-width: 22em) {
     .site-header-over-hero {
         position: absolute;
@@ -851,16 +851,16 @@ iframe:focus-visible {
         outline-color: var(--brand-ice);
     }
 
-    /* The hero's own padding, plus the header's 4rem (its min-height, which a
-       single row never exceeds). If the header ever wraps to two rows, about
-       7rem, it still clears the hero's content. */
+    /* The hero's own padding, plus the header's height: 4rem for one row (its
+       min-height, which one row never exceeds), or 6.5rem for two (measured
+       at 6.4rem). Keep 29em in step with the two-row query above. */
     .site-header-over-hero ~ main .section-hero {
-        padding-top: 9.5rem;
+        padding-top: calc(var(--hero-pad) + 4rem);
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 29em) {
         .site-header-over-hero ~ main .section-hero {
-            padding-top: 7.5rem;
+            padding-top: calc(var(--hero-pad) + 6.5rem);
         }
     }
 

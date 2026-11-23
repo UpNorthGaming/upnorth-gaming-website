@@ -47,5 +47,5 @@ The two `theme-color` metas are `media`-scoped, carry each theme's `--bg`, and m
 - Icons are inline Feather-style SVGs: `viewBox="0 0 24 24"`, `fill="none"`, `stroke="currentColor"`, `stroke-width="2"`, round caps and joins, and `aria-hidden="true"`, at 20px in the header.
 - Buttons have `type="button"`. Links open in the same tab.
 - An icon-only control has an `aria-label`. A toggle's label names its on state, and `aria-pressed` carries the state.
-- The current page's nav link gets `aria-current="page"`.
+- The nav links to the home page's sections in page order (`/#games`, `/#devlog`, `/#developers`), each labeled with its section's heading or a short form of it. Renaming a section's `id` means updating the nav and the hero's buttons.
 - Comment non-obvious markup with HTML comments (`<!-- -->`), or with `{%- comment -%}` when the note shouldn't ship in the page.

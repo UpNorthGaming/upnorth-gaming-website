@@ -62,6 +62,7 @@ AGENTS.md, CLAUDE.md, README.md, DEVELOPMENT.md
 | Name, tagline, hero copy, or hero photo | `index.html` and `scripts/brand/og-image.html` together, then re-render the link preview |
 | An image's pixel size | Its `<img>` `width` and `height` (or a post's `images` entry, or a game's `cover`) |
 | The platform names (`Mobile`, `Console`, `board.fun`) | `_posts/AGENTS.md`, `_games/AGENTS.md`, `DEVELOPMENT.md`, and `.agents/checks/post-rules.md` and `game-rules.md` |
+| A home section's `id`, heading, or order | The nav in `_includes/header.html` and the hero's buttons in `index.html`. If the nav's width changes, re-measure the header's `29em` and `22em` queries in `index-common.css` |
 | A new unpublished file, or a new `AGENTS.md`/`CLAUDE.md` | `_config.yml` `exclude` |
 | Files, conventions, or behavior | This file, the nearest folder `AGENTS.md`, and `DEVELOPMENT.md` (keep `README.md` to a short overview) |
 
@@ -132,6 +133,7 @@ Serve with `scripts/serve.sh` (`bundle exec jekyll serve` at `http://localhost:4
 
 - **Themes.** Both themes from the OS setting and from the toggle, after a reload too, with `aria-pressed` following. With JavaScript off, the page still follows the OS.
 - **Narrow screens.** 320px wide at 100% and 200% text: no horizontal scroll, nothing clipped.
+- **Nav.** Each link lands on its section from the home page, a post, `/updates/`, and the 404 page. The header clears the hero's content on either side of `29em` and `22em`.
 - **Devlog.** Home cards, `/updates/`, a post page, the empty state with no posts, and the 404 page.
 - **Games.** Cards in `date` order with the future one held back, the emblem on a game without a cover, store buttons lined up at the cards' bottoms, and the empty state with no games.
 - **Unpublished files.** `_site/` contains nothing from `scripts/brand/`, `.agents/`, or `_games/`, or any `AGENTS.md`, `CLAUDE.md`, `README.md`, or `DEVELOPMENT.md`.
