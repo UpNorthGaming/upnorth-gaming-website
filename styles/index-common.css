@@ -326,6 +326,18 @@ iframe:focus-visible {
     border-top: 1px solid var(--hairline);
 }
 
+/* A section on a band of color, so the home page alternates rather than
+   running one section into the next. The color change separates it, so
+   neither of its edges needs a hairline. */
+.section-band {
+    background: var(--band);
+}
+
+.section + .section-band,
+.section-band + .section {
+    border-top: none;
+}
+
 .section-head {
     max-width: 42rem;
     margin-bottom: 2.5rem;

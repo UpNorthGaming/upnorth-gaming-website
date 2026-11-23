@@ -13,7 +13,7 @@ Three sheets, published verbatim (no front matter):
 ## Flat
 
 No glass, `backdrop-filter`, glows, gradients, gradient text, or decorative `box-shadow`. The one exception is `.site-header-over-hero` (see Components), whose fade of the scrim's navy blends the header into the hero's photo. Use these instead:
-- **Depth:** a solid `--surface` on `--bg`, separated by a 1px `--hairline`.
+- **Depth:** a solid `--surface` on `--bg`, separated by a 1px `--hairline`. A solid `--band` sets a section apart.
 - **Hover:** a color change. A link card's border and title turn `--accent-text`; a button's fill shifts. Nothing lifts or scales.
 - **Shape:** radius `.75rem` (`--radius`) for cards and media, `.55rem` for buttons, and `999px` for tags.
 
@@ -30,6 +30,7 @@ Both theme sheets define all of these on `:root`, after `color-scheme`. Note eac
 | `--on-accent` | Text on `--accent` | `#0a2f4a` | `#0b1421` | 4.5:1 on `--accent` |
 | `--accent-text` | Links, focus rings, hover | `#1b5f8f` | `#b8e5ff` (logo ice) | 4.5:1 on `--bg` and `--surface` |
 | `--surface` | Cards, scroll-to-top button | `#ffffff` | `#111e2e` | |
+| `--band` | Banded sections (`.section-band`) | `#e3eef7` | `#102639` | Text tokens 4.5:1 and `--hairline-strong` 3:1 on it; distinct from `--surface` and `--brand-navy`, so cards and emblem covers stand out |
 | `--hairline` | Dividers that only separate | navy at .12 | cream at .12 | |
 | `--hairline-strong` | Borders that outline a control or tag | navy at .55 | cream at .4 | 3:1 on `--bg` and `--surface` |
 
@@ -61,7 +62,7 @@ The hero is the same in both themes. The night photo (`.hero-photo`) sits under 
 ## Layout
 
 - `.container`: `max-width: 68rem`, centered, `padding: 0 1.25rem`.
-- `.section`: `padding: 5rem 0`, with a top hairline between consecutive sections. `.section-head` holds the `h2` and intro at `max-width: 42rem`.
+- `.section`: `padding: 5rem 0`, with a top hairline between consecutive sections. `.section-band` fills one with `--band`, and the color change replaces the hairlines on both its edges. The home page bands every other section (the devlog). `.section-head` holds the `h2` and intro at `max-width: 42rem`.
 - `.card-grid`: `repeat(auto-fill, minmax(min(100%, 18rem), 1fr))`.
 - `.team-grid`: two columns, stacking at 820px.
 - `.post`: one column at `max-width: 44rem`.
