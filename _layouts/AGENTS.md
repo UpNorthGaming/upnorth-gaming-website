@@ -17,7 +17,7 @@ These rules cover `_layouts/` and `_includes/`. Both hold Liquid templates that 
 
 ## Page variables `head.html` reads
 
-- `title`: becomes `<title>` as "Title | UpNorth Gaming". Without one, the page is titled "UpNorth Gaming | Independent game studio" (the home page).
+- `title`: becomes `<title>` as "Title | UpNorth Gaming". Without one, the page is titled "UpNorth Gaming | Indie game studio" (the home page).
 - `description`: the meta and `og:description`. A post without one uses its excerpt, and any other page uses `site.description`.
 - `images`: on posts, the first entry becomes `og:image` with its size and alt. Otherwise the image is `images/og-image.png`.
 - Posts also get `og:type` `article` and `article:published_time`.
