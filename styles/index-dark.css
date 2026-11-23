@@ -18,9 +18,10 @@
     /* The logo's ice, lifted: 13.8:1 on --bg, 12.6:1 on --surface. */
     --accent-text: #b8e5ff;
     --surface: #111e2e;
-    /* Banded sections: a blue between --bg and the logo's navy, so cards and
-       the navy emblem covers still stand out. On it, --fg holds 13.8:1,
-       --secondary 8.6:1, --accent-text 11.6:1, and --hairline-strong 3.4:1. */
+    /* Banded sections, the treelines, and the footer: a blue between --bg and
+       the logo's navy, so cards and the navy emblem covers still stand out. On
+       it, --fg holds 13.8:1, --secondary 8.6:1, --accent-text 11.6:1, and
+       --hairline-strong 3.4:1. */
     --band: #102639;
     /* Dividers that only separate. */
     --hairline: rgba(248, 241, 227, .12);

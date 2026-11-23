@@ -30,7 +30,7 @@ Both theme sheets define all of these on `:root`, after `color-scheme`. Note eac
 | `--on-accent` | Text on `--accent` | `#0a2f4a` | `#0b1421` | 4.5:1 on `--accent` |
 | `--accent-text` | Links, focus rings, hover | `#1b5f8f` | `#b8e5ff` (logo ice) | 4.5:1 on `--bg` and `--surface` |
 | `--surface` | Cards, scroll-to-top button | `#ffffff` | `#111e2e` | |
-| `--band` | Banded sections (`.section-band`) | `#e3eef7` | `#102639` | Text tokens 4.5:1 and `--hairline-strong` 3:1 on it; distinct from `--surface` and `--brand-navy`, so cards and emblem covers stand out |
+| `--band` | Banded sections (`.section-band`), treelines, footer | `#e3eef7` | `#102639` | Text tokens 4.5:1 and `--hairline-strong` 3:1 on it; distinct from `--surface` and `--brand-navy`, so cards and emblem covers stand out |
 | `--hairline` | Dividers that only separate | navy at .12 | cream at .12 | |
 | `--hairline-strong` | Borders that outline a control or tag | navy at .55 | cream at .4 | 3:1 on `--bg` and `--surface` |
 
@@ -62,6 +62,7 @@ The hero is the same in both themes. The night photo (`.hero-photo`) sits under 
 ## Layout
 
 - `.container`: `max-width: 68rem`, centered, `padding: 0 1.25rem`.
+- `body` is a flex column at least the viewport's height, and `main` takes the slack, so the footer's band reaches the bottom of a short page.
 - `.section`: `padding: 5rem 0`, with a top hairline between consecutive sections. `.section-band` fills one with `--band`, and the color change replaces the hairlines on both its edges. The home page bands every other section (the devlog). `.section-head` holds the `h2` and intro at `max-width: 42rem`.
 - `.card-grid`: `repeat(auto-fill, minmax(min(100%, 18rem), 1fr))`.
 - `.team-grid`: two columns, stacking at 820px.
@@ -76,6 +77,8 @@ The hero is the same in both themes. The night photo (`.hero-photo`) sits under 
 - **Cards:** `.card` is the box every card shares: `--surface`, a hairline border, and a 16:9 `.card-cover`, or `.card-cover-empty` (the emblem on navy) when there's no image, above `.card-body` with its `.card-title` and `.card-summary`. `.update-card` adds what a devlog card needs as a single link to its post: no underline, and on hover an `--accent-text` border and title. `.game-card` isn't a link: its body is a column with its `.game-platforms` tags at the top and its `.store-links` buttons pushed to the bottom, so they line up across a row.
 - **Heading bar:** a section `h2` and a page `h1` (`.section-head`, `.page-head`) sit under a `2.5rem` by `.25rem` gold (`--accent`) bar, their `::before`. It's a fill, so it's exempt from contrast.
 - **`.platform-tag`:** a `--hairline-strong` outline pill.
+- **`.treeline`:** a `3rem` row of pines in `--band`, placed right above a band (the devlog section, and the footer on every page). `images/treeline.svg` is its `mask`, tiled across and scaled to the row's height, so the trees take the theme's color and never crop on wide screens or with enlarged text. Without mask support, the row is plain band.
+- **Footer:** `--band`, with the treeline above it in place of a top hairline.
 - **`.empty-state`:** a dashed `--hairline-strong` box in place of a card grid with nothing in it yet (the devlog and games).
 - **Avatars:** `.avatar` is a 4.5rem navy circle with gold initials. An `<img>` inside it fills the circle.
 - **`.overview-return`:** fixed `--fab-inset` from the bottom right. A `--surface` circle with a `--hairline-strong` border, hidden until `.visible`. **Never rename it** (see `scripts/AGENTS.md`).

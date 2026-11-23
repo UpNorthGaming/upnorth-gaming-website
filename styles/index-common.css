@@ -37,7 +37,13 @@ html {
     scroll-behavior: smooth;
 }
 
+/* A column at least the viewport's height, with main taking the slack, so on
+   a short page the footer's band still reaches the bottom of the screen. */
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100svh;
     margin: 0;
     font-family: var(--font);
     font-size: 1rem;
@@ -46,6 +52,10 @@ body {
     background: var(--bg);
     overflow-wrap: break-word;
     -webkit-font-smoothing: antialiased;
+}
+
+main {
+    flex: 1 0 auto;
 }
 
 h1,
@@ -336,6 +346,18 @@ iframe:focus-visible {
 .section + .section-band,
 .section-band + .section {
     border-top: none;
+}
+
+/* A row of pines in --band, rising into the page above a band: the devlog's
+   and the footer's. images/treeline.svg is only a mask, so the trees take the
+   theme's color. It tiles across and scales with the row's height, so wide
+   screens and enlarged text never crop it. Without mask support, the row is
+   just more band. */
+.treeline {
+    height: 3rem;
+    background: var(--band);
+    -webkit-mask: url("../images/treeline.svg") center bottom / auto 100% repeat-x;
+    mask: url("../images/treeline.svg") center bottom / auto 100% repeat-x;
 }
 
 .section-head {
@@ -670,7 +692,7 @@ iframe:focus-visible {
 /* The bottom padding clears the scroll-to-top button. */
 .site-footer {
     padding: 3rem 1.25rem calc(var(--fab-inset) + var(--fab-size) + 1rem);
-    border-top: 1px solid var(--hairline);
+    background: var(--band);
     color: var(--secondary);
     font-size: .875rem;
     text-align: center;

@@ -18,8 +18,9 @@
        --bg, 6.8:1 on --surface. */
     --accent-text: #1b5f8f;
     --surface: #ffffff;
-    /* Banded sections: the ice, deepened. On it, --fg holds 11.8:1,
-       --secondary 5.6:1, --accent-text 5.8:1, and --hairline-strong 3.3:1. */
+    /* Banded sections, the treelines, and the footer: the ice, deepened. On
+       it, --fg holds 11.8:1, --secondary 5.6:1, --accent-text 5.8:1, and
+       --hairline-strong 3.3:1. */
     --band: #e3eef7;
     /* Dividers that only separate. */
     --hairline: rgba(10, 47, 74, .12);
