@@ -12,7 +12,7 @@ description: Development updates, screenshots, and gameplay clips from UpNorth G
 
     <div class="page-body">
         {%- if site.posts.size > 0 %}
-        <div class="update-grid">
+        <div class="card-grid">
             {%- for post in site.posts %}
             {% include update-card.html post=post level=2 %}
             {%- endfor %}

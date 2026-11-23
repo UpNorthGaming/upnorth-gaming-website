@@ -61,7 +61,7 @@ The hero is the same in both themes. The night photo (`.hero-photo`) sits under 
 
 - `.container`: `max-width: 68rem`, centered, `padding: 0 1.25rem`.
 - `.section`: `padding: 5rem 0`, with a top hairline between consecutive sections. `.section-head` holds the `h2` and intro at `max-width: 42rem`.
-- `.update-grid`: `repeat(auto-fill, minmax(min(100%, 18rem), 1fr))`. Each `.update-card` is a single link.
+- `.card-grid`: `repeat(auto-fill, minmax(min(100%, 18rem), 1fr))`.
 - `.team-grid`: two columns, stacking at 820px.
 - `.post`: one column at `max-width: 44rem`.
 
@@ -71,7 +71,7 @@ The hero is the same in both themes. The night photo (`.hero-photo`) sits under 
 - **`.site-header-over-hero`:** on pages with `hero: true` (the home page), above `22em`, the header is absolute over the hero's top, with a `rgba(8, 17, 30, .6)`-to-transparent fade and the hero's fixed colors (cream links, ice focus rings) in both themes. The hero adds the header's 4rem to its top padding. Below `22em` it's the normal themed header above the hero, since the nav's rows make its height unknown.
 - **`.top-link` / `.top-btn`:** `--secondary` text. On hover, they get a `--hairline` fill and `--fg` text. `aria-current` links are `--fg`.
 - **Buttons:** `.btn-primary` is gold with navy text (6.8:1). `.btn-ghost` is the hero's cream outline. Both are `min-height: 3rem`, `max-width: 100%`, and `padding: .4rem 1.3rem`. Labels may wrap: never `white-space: nowrap`, and never widen a button with padding or `min-width` to match its neighbor.
-- **Cards:** `.update-card` has `--surface`, a hairline border, and a 16:9 `.update-card-cover`, or `.update-card-cover-empty` (the emblem on navy) when the post has no images.
+- **Cards:** `.card` is the box every card shares: `--surface`, a hairline border, and a 16:9 `.card-cover`, or `.card-cover-empty` (the emblem on navy) when there's no image, above `.card-body` with its `.card-title` and `.card-summary`. `.update-card` adds what a devlog card needs as a single link to its post: no underline, and on hover an `--accent-text` border and title.
 - **`.platform-tag`:** a `--hairline-strong` outline pill.
 - **`.empty-state`:** a dashed `--hairline-strong` box for the devlog with no posts.
 - **Avatars:** `.avatar` is a 4.5rem navy circle with gold initials. An `<img>` inside it fills the circle.

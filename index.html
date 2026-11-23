@@ -30,7 +30,7 @@ hero: true
         </div>
 
         {%- if site.posts.size > 0 %}
-        <div class="update-grid">
+        <div class="card-grid">
             {%- for post in site.posts limit: 3 %}
             {% include update-card.html post=post %}
             {%- endfor %}
