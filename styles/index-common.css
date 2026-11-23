@@ -339,6 +339,19 @@ iframe:focus-visible {
     line-height: 1.1;
 }
 
+/* A short gold bar marks each heading. It's a fill, never text, so the gold
+   needs no contrast here. */
+.section-head h2::before,
+.page-head h1::before {
+    content: "";
+    display: block;
+    width: 2.5rem;
+    height: .25rem;
+    margin-bottom: 1rem;
+    border-radius: 999px;
+    background: var(--accent);
+}
+
 .section-head p,
 .page-head p {
     margin-top: 1rem;
