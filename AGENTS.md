@@ -22,7 +22,7 @@ _layouts/                   Page shells: default (every page) and post
 _includes/                  head, header, footer, update-card, update-meta, youtube
 _posts/                     Devlog posts, one Markdown file each
 styles/                     index-common.css, index-light.css, index-dark.css
-scripts/                    dark-mode.js, overview-return.js
+scripts/                    dark-mode.js, overview-return.js, serve.sh (local server)
 scripts/brand/              Unpublished masters, asset script, link preview source
 images/                     logo.webp, logo-mark.png, hero-winter.webp, og-image.png
 images/devlog/              Post images
@@ -112,7 +112,7 @@ rm -rf "$profile"; file images/og-image.png
 
 ## Verify
 
-Serve with `bundle exec jekyll serve` (`http://localhost:4000`) rather than opening files, so permalinks, includes, and the feed behave as on Pages. To exercise the devlog, add a throwaway post with two images and a `youtube` id, then delete it before committing. Check:
+Serve with `scripts/serve.sh` (`bundle exec jekyll serve` at `http://localhost:4000`) rather than opening files, so permalinks, includes, and the feed behave as on Pages. To exercise the devlog, add a throwaway post with two images and a `youtube` id, then delete it before committing. Check:
 
 - **Themes.** Both themes from the OS setting and from the toggle, after a reload too, with `aria-pressed` following. With JavaScript off, the page still follows the OS.
 - **Narrow screens.** 320px wide at 100% and 200% text: no horizontal scroll, nothing clipped.

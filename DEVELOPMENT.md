@@ -8,11 +8,10 @@ You need Ruby 3.x. macOS ships 2.6, which is too old, and Ruby 4 isn't supported
 
 ```sh
 brew install ruby@3.3
-export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"   # add to your shell profile to keep it
-bundle config set --local path vendor/bundle         # installs gems inside the repo (git-ignored)
-bundle install
-bundle exec jekyll serve
+scripts/serve.sh
 ```
+
+`scripts/serve.sh` installs the gems inside the repo (in `vendor/`, which git ignores) on first run, then runs `bundle exec jekyll serve`. It finds Homebrew's Ruby 3.3 without it being on your `PATH`, and passes any arguments on to Jekyll, e.g. `scripts/serve.sh --livereload`.
 
 Then open <http://localhost:4000>. Jekyll rebuilds when you save a file, so just reload the page. Changes to `_config.yml` need a restart.
 
@@ -87,7 +86,7 @@ Upload gameplay clips to YouTube, then put the video's id in `youtube`. The id i
 
 ### 5. Publish
 
-Preview with `bundle exec jekyll serve`, then commit and push to `main`. GitHub Pages rebuilds within a minute or two.
+Preview with `scripts/serve.sh`, then commit and push to `main`. GitHub Pages rebuilds within a minute or two.
 
 **No local setup?** On GitHub, open the `_posts` folder, choose **Add file → Create new file**, name it as above, paste in the front matter and text, and commit to `main`. Upload images to `images/devlog/` the same way, with **Add file → Upload files**.
 

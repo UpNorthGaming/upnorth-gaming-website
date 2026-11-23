@@ -2,6 +2,8 @@
 
 `scripts/brand/` isn't page code: it holds the unpublished brand masters and asset tooling, and `_config.yml` excludes it as a whole. See [`brand/AGENTS.md`](brand/AGENTS.md).
 
+`serve.sh` isn't page code either: it runs the local server, and `_config.yml` excludes it.
+
 Page scripts are classic scripts, each wrapped in an IIFE with `var` and `function` declarations: no modules, no globals, and no dependencies. Feature-detect rather than sniff user agents, and give a missing API a fallback. The rules in `.agents/checks/javascript-rules.md` apply.
 
 ## `dark-mode.js`
@@ -23,3 +25,10 @@ The scroll-to-top button. **Don't rename it** (the file, `#overview-return`, or 
 - It toggles `.visible` once `scrollY` passes 400, from a passive scroll listener and once on load.
 - A click scrolls to the top: smoothly, or instantly under `prefers-reduced-motion: reduce`.
 - It loads with `defer`, so the button already exists when it runs.
+
+## `serve.sh`
+
+Runs `bundle exec jekyll serve` from the repo root, passing its arguments on to Jekyll. Before that, it:
+
+- Puts Homebrew's `ruby@3.3` on `PATH` when the `ruby` there isn't 3.x, and exits with an install hint if neither is.
+- Sets Bundler's path to `vendor/bundle` when none is set, and runs `bundle install` when `bundle check` fails.

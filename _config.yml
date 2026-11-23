@@ -36,6 +36,7 @@ exclude:
   - .claude/
   - .codex/
   - scripts/brand/
+  - scripts/serve.sh
   - Gemfile
   - Gemfile.lock
   - vendor/
