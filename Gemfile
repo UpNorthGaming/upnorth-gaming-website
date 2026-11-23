@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 # github-pages >= 232 depends on commonmarker 0.x, which doesn't build on Ruby
-# 4, so this needs Ruby 3.x (see README.md).
+# 4, so this needs Ruby 3.x (see DEVELOPMENT.md).
 ruby ">= 3.0", "< 4.0"
 
 gem "github-pages", ">= 232", group: :jekyll_plugins

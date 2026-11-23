@@ -12,8 +12,9 @@
     --fab-size: 2.5rem;
     --fab-inset: 1.5rem;
     --radius: .75rem;
-    /* The logo's colors, sampled from brand/logo-master.png. They paint the
-       hero, the avatars, and the touch icon the same way in both themes. */
+    /* The logo's colors, sampled from scripts/brand/logo-master.png. They
+       paint the hero, the avatars, and the touch icon the same way in both
+       themes. */
     --brand-navy: #0a2f4a;
     --brand-gold: #efa933;
     --brand-cream: #f8f1e3;

@@ -1,5 +1,7 @@
 # Scripts
 
+`scripts/brand/` isn't page code: it holds the unpublished brand masters and asset tooling, and `_config.yml` excludes it as a whole. See [`brand/AGENTS.md`](brand/AGENTS.md).
+
 Page scripts are classic scripts, each wrapped in an IIFE with `var` and `function` declarations: no modules, no globals, and no dependencies. Feature-detect rather than sniff user agents, and give a missing API a fallback. The rules in `.agents/checks/javascript-rules.md` apply.
 
 ## `dark-mode.js`

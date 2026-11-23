@@ -35,11 +35,12 @@ exclude:
   - .agents/
   - .claude/
   - .codex/
-  - brand/
+  - scripts/brand/
   - Gemfile
   - Gemfile.lock
   - vendor/
   - README.md
+  - DEVELOPMENT.md
   - AGENTS.md
   - CLAUDE.md
   - _layouts/AGENTS.md

@@ -2,10 +2,10 @@
 # requires-python = ">=3.10"
 # dependencies = ["pillow", "numpy", "scipy"]
 # ///
-"""Regenerates the published logo images and icons from brand/logo-master.png.
+"""Regenerates the published logo images and icons from scripts/brand/logo-master.png.
 
-Run from the repo root with `uv run brand/export_assets.py`, then re-encode the
-hero logo as described in brand/AGENTS.md. It writes:
+Run from the repo root with `uv run scripts/brand/export_assets.py`, then re-encode the
+hero logo as described in scripts/brand/AGENTS.md. It writes:
 
   images/logo.png        Full logo at 720px wide, cleaned (encode to logo.webp)
   images/logo-mark.png   The compass-and-controller emblem, 80px tall
@@ -18,7 +18,7 @@ import numpy as np
 from PIL import Image
 from scipy import ndimage
 
-MASTER = "brand/logo-master.png"
+MASTER = "scripts/brand/logo-master.png"
 # The logo's navy, also --brand-navy in styles/index-common.css.
 NAVY = (10, 47, 74, 255)
 # The wordmark's navy panel starts at this row of the master; everything above

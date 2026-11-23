@@ -1,6 +1,6 @@
 # Brand
 
-Unpublished sources (`_config.yml` excludes `brand/`). The site's published images and icons are generated from these.
+Unpublished sources (`_config.yml` excludes `scripts/brand/`). The site's published images and icons are generated from these.
 
 | File | What |
 |---|---|
@@ -15,7 +15,7 @@ Unpublished sources (`_config.yml` excludes `brand/`). The site's published imag
 From the repo root:
 
 ```sh
-uv run brand/export_assets.py
+uv run scripts/brand/export_assets.py
 cwebp -quiet -q 88 -alpha_q 100 -m 6 images/logo.png -o images/logo.webp && rm images/logo.png
 ```
 
@@ -28,12 +28,12 @@ cwebp -quiet -q 88 -alpha_q 100 -m 6 images/logo.png -o images/logo.webp && rm i
 
 The favicon isn't themed. Safari draws its own backdrop behind a favicon too dark for its tab bar, and browsers read icon links once at load, so a themed favicon could neither look right nor follow the toggle.
 
-If the logo's size changes, update the `width`/`height` on its `<img>` tags (`index.html`, `brand/og-image.html`, `_includes/header.html`, `_includes/update-card.html`). Then re-render the link preview.
+If the logo's size changes, update the `width`/`height` on its `<img>` tags (`index.html`, `scripts/brand/og-image.html`, `_includes/header.html`, `_includes/update-card.html`). Then re-render the link preview.
 
 ## Photos
 
 - Convert any non-sRGB source to sRGB before anything else: `sips --matchTo "/System/Library/ColorSync/Profiles/sRGB Profile.icc" <file>`. Check with `sips -g profile <file>`. Browsers read untagged pixels as sRGB, so wide-gamut colors (like iPhone photos in Display P3) come out dull otherwise.
-- Downscale to at most 2x the size the photo displays at, and encode as WebP: `cwebp -q 80 -m 6 brand/hero-winter-master.jpg -o images/hero-winter.webp`.
+- Downscale to at most 2x the size the photo displays at, and encode as WebP: `cwebp -q 80 -m 6 scripts/brand/hero-winter-master.jpg -o images/hero-winter.webp`.
 
 ## Link preview
 

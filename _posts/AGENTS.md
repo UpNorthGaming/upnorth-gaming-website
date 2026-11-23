@@ -1,6 +1,6 @@
 # Devlog posts
 
-Every file here named `YYYY-MM-DD-slug.md` is a devlog post. Jekyll skips any other name, so this file and `CLAUDE.md` are never treated as posts (`_config.yml` excludes them by path too). `README.md` has the step-by-step guide for people; this is the contract.
+Every file here named `YYYY-MM-DD-slug.md` is a devlog post. Jekyll skips any other name, so this file and `CLAUDE.md` are never treated as posts (`_config.yml` excludes them by path too). `DEVELOPMENT.md` has the step-by-step guide for people; this is the contract.
 
 ## Naming
 

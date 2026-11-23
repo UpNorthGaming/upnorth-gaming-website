@@ -2,7 +2,7 @@
 
 The UpNorth Gaming studio site: a home page (hero, platforms, the latest devlog posts, and the team), a devlog archive at `/updates/`, and a page per post. GitHub Pages builds it with Jekyll from the root of `main` and serves it at `upnorthgaming.com` (`CNAME`). There is no other build step: pushing to `main` publishes.
 
-Folders with their own rules have their own `AGENTS.md`: [`_posts/`](_posts/AGENTS.md), [`_layouts/`](_layouts/AGENTS.md) (also covers `_includes/`), [`styles/`](styles/AGENTS.md), [`scripts/`](scripts/AGENTS.md), and [`brand/`](brand/AGENTS.md). Each `CLAUDE.md` is a symlink to the `AGENTS.md` beside it.
+Folders with their own rules have their own `AGENTS.md`: [`_posts/`](_posts/AGENTS.md), [`_layouts/`](_layouts/AGENTS.md) (also covers `_includes/`), [`styles/`](styles/AGENTS.md), [`scripts/`](scripts/AGENTS.md), and [`scripts/brand/`](scripts/brand/AGENTS.md). Each `CLAUDE.md` is a symlink to the `AGENTS.md` beside it.
 
 ## Stack
 
@@ -15,7 +15,7 @@ Folders with their own rules have their own `AGENTS.md`: [`_posts/`](_posts/AGEN
 
 ```
 index.html                  Home page
-updates/index.html          Devlog archive, every post newest first
+updates.html                Devlog archive at /updates/ (its permalink), every post newest first
 404.html                    Not-found page (Pages serves it for any missing path)
 _config.yml                 Jekyll config, including the `exclude` list
 _layouts/                   Page shells: default (every page) and post
@@ -23,13 +23,13 @@ _includes/                  head, header, footer, update-card, update-meta, yout
 _posts/                     Devlog posts, one Markdown file each
 styles/                     index-common.css, index-light.css, index-dark.css
 scripts/                    dark-mode.js, overview-return.js
+scripts/brand/              Unpublished masters, asset script, link preview source
 images/                     logo.webp, logo-mark.png, hero-winter.webp, og-image.png
 images/devlog/              Post images
 favicon.png, favicon.ico, apple-touch-icon.png
-brand/                      Unpublished masters, asset script, link preview source
 .agents/                    Agent checks and skills (.claude/ and .codex/ link here)
 CNAME, Gemfile, .gitignore
-AGENTS.md, CLAUDE.md, README.md
+AGENTS.md, CLAUDE.md, README.md, DEVELOPMENT.md
 ```
 
 ## Publishing
@@ -40,7 +40,7 @@ AGENTS.md, CLAUDE.md, README.md
 
 ## Look and theming
 
-- Colors come from the logo (`brand/logo-master.png`): navy `#0a2f4a`, gold `#efa933`, cream `#f8f1e3`, and ice `#b8e5ff`.
+- Colors come from the logo (`scripts/brand/logo-master.png`): navy `#0a2f4a`, gold `#efa933`, cream `#f8f1e3`, and ice `#b8e5ff`.
 - The design is **flat**: solid fills and hairline borders, with no glass, blur, glows, gradients, or decorative shadows.
 - There are two designed themes:
   - **Light** ("snow at noon"): an ice-tinted white, with navy text.
@@ -55,11 +55,11 @@ AGENTS.md, CLAUDE.md, README.md
 | Change | Also update |
 |---|---|
 | A theme's `--bg` | The `theme-color` metas in `_includes/head.html`, `scripts/dark-mode.js`, and, for dark, the link preview |
-| Logo | `brand/logo-master.png`, then rerun `brand/export_assets.py` (header mark, favicons, touch icon), re-encode `logo.webp`, and re-render the link preview |
-| Name, tagline, hero copy, or hero photo | `index.html` and `brand/og-image.html` together, then re-render the link preview |
+| Logo | `scripts/brand/logo-master.png`, then rerun `scripts/brand/export_assets.py` (header mark, favicons, touch icon), re-encode `logo.webp`, and re-render the link preview |
+| Name, tagline, hero copy, or hero photo | `index.html` and `scripts/brand/og-image.html` together, then re-render the link preview |
 | An image's pixel size | Its `<img>` `width` and `height` (or a post's `images` entry) |
 | A new unpublished file, or a new `AGENTS.md`/`CLAUDE.md` | `_config.yml` `exclude` |
-| Files, conventions, or behavior | This file, the nearest folder `AGENTS.md`, and `README.md` |
+| Files, conventions, or behavior | This file, the nearest folder `AGENTS.md`, and `DEVELOPMENT.md` (keep `README.md` to a short overview) |
 
 ## Devlog
 
@@ -70,7 +70,7 @@ Posts are Markdown files in `_posts/` named `YYYY-MM-DD-slug.md`. Their front ma
 - `images`, which live in `images/devlog/`
 - `youtube` (a bare video id)
 
-The home page shows the newest three. `/updates/` lists all of them, and each gets `/updates/YYYY/MM/DD/slug/`. A post dated in the future isn't published until a later build. The full contract and a template are in [`_posts/AGENTS.md`](_posts/AGENTS.md); the human guide is in `README.md`.
+The home page shows the newest three. `/updates/` lists all of them, and each gets `/updates/YYYY/MM/DD/slug/`. A post dated in the future isn't published until a later build. The full contract and a template are in [`_posts/AGENTS.md`](_posts/AGENTS.md); the human guide is in `DEVELOPMENT.md`.
 
 ## Accessibility
 
@@ -91,19 +91,19 @@ The home page shows the newest three. `/updates/` lists all of them, and each ge
 
 ## Images
 
-- `images/hero-winter.webp`: `brand/hero-winter-master.jpg` encoded with `cwebp -q 80 -m 6`, at 1536x1024.
-- `images/logo.webp`, `images/logo-mark.png`, and the icons: generated by `brand/export_assets.py` (see [`brand/AGENTS.md`](brand/AGENTS.md)).
+- `images/hero-winter.webp`: `scripts/brand/hero-winter-master.jpg` encoded with `cwebp -q 80 -m 6`, at 1536x1024.
+- `images/logo.webp`, `images/logo-mark.png`, and the icons: generated by `scripts/brand/export_assets.py` (see [`scripts/brand/AGENTS.md`](scripts/brand/AGENTS.md)).
 - **Developer avatars** are initials until there are photos. To add one, square-crop the photo to 144x144 (2x the avatar) in sRGB, save it as `images/team/<name>.jpg`, and put an `<img>` (with `alt`, `width`, `height`, `loading="lazy"`, and `decoding="async"`) inside that developer's `.avatar` in place of the initials. Then drop the avatar's `aria-hidden`.
 
 ### Link preview
 
-`images/og-image.png` is the 1200x630 card that link unfurls show for every page except posts with images, which use their first image. It's an opaque PNG of the hero on the dark theme, rendered from `brand/og-image.html`. Re-render it in the same change as anything it shows. From the repo root:
+`images/og-image.png` is the 1200x630 card that link unfurls show for every page except posts with images, which use their first image. It's an opaque PNG of the hero on the dark theme, rendered from `scripts/brand/og-image.html`. Re-render it in the same change as anything it shows. From the repo root:
 
 ```sh
 profile=$(mktemp -d) && rm -f images/og-image.png && \
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --force-dark-mode \
     --force-device-scale-factor=1 --hide-scrollbars --user-data-dir="$profile" --window-size=1200,630 \
-    --virtual-time-budget=5000 --screenshot="$PWD/images/og-image.png" "file://$PWD/brand/og-image.html"; \
+    --virtual-time-budget=5000 --screenshot="$PWD/images/og-image.png" "file://$PWD/scripts/brand/og-image.html"; \
 rm -rf "$profile"; file images/og-image.png
 ```
 
@@ -116,7 +116,7 @@ Serve with `bundle exec jekyll serve` (`http://localhost:4000`) rather than open
 - **Themes.** Both themes from the OS setting and from the toggle, after a reload too, with `aria-pressed` following. With JavaScript off, the page still follows the OS.
 - **Narrow screens.** 320px wide at 100% and 200% text: no horizontal scroll, nothing clipped.
 - **Devlog.** Home cards, `/updates/`, a post page, the empty state with no posts, and the 404 page.
-- **Unpublished files.** `_site/` contains nothing from `brand/`, `.agents/`, or any `AGENTS.md`, `CLAUDE.md`, or `README.md`.
+- **Unpublished files.** `_site/` contains nothing from `scripts/brand/`, `.agents/`, or any `AGENTS.md`, `CLAUDE.md`, `README.md`, or `DEVELOPMENT.md`.
 
 Headless Chrome follows the OS appearance. Force light with `--blink-settings=preferredColorScheme=1` and dark with `--force-dark-mode`. `--window-size` won't go below 500px wide, so for 320px, frame the page in a 320px `<iframe>` on a page served from the same origin (so a script can also set the frame's root `font-size` to 200%), or use a browser's responsive mode.
 
