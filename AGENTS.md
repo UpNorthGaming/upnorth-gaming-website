@@ -1,6 +1,6 @@
 # upnorthgaming.com
 
-The UpNorth Gaming studio site: a home page (hero, platforms, the latest devlog posts, and the team), a devlog archive at `/updates/`, and a page per post. GitHub Pages builds it with Jekyll from the root of `main` and serves it at `upnorthgaming.com` (`CNAME`). There is no other build step: pushing to `main` publishes.
+The UpNorth Gaming studio site: a home page (hero, the latest devlog posts, and the team), a devlog archive at `/updates/`, and a page per post. GitHub Pages builds it with Jekyll from the root of `main` and serves it at `upnorthgaming.com` (`CNAME`). There is no other build step: pushing to `main` publishes.
 
 Folders with their own rules have their own `AGENTS.md`: [`_posts/`](_posts/AGENTS.md), [`_layouts/`](_layouts/AGENTS.md) (also covers `_includes/`), [`styles/`](styles/AGENTS.md), [`scripts/`](scripts/AGENTS.md), and [`scripts/brand/`](scripts/brand/AGENTS.md). Each `CLAUDE.md` is a symlink to the `AGENTS.md` beside it.
 
@@ -41,12 +41,12 @@ AGENTS.md, CLAUDE.md, README.md, DEVELOPMENT.md
 ## Look and theming
 
 - Colors come from the logo (`scripts/brand/logo-master.png`): navy `#0a2f4a`, gold `#efa933`, cream `#f8f1e3`, and ice `#b8e5ff`.
-- The design is **flat**: solid fills and hairline borders, with no glass, blur, glows, gradients, or decorative shadows.
+- The design is **flat**: solid fills and hairline borders, with no glass, blur, glows, gradients, or decorative shadows. The one exception is the home page's header, which lies over the hero and fades into its photo.
 - There are two designed themes:
   - **Light** ("snow at noon"): an ice-tinted white, with navy text.
   - **Dark** ("night up north"): the navy-black of the hero's sky, with cream text.
 - Gold is a fill color in both themes, never text on the page background.
-- The hero is the same in both themes: the winter night photo under a flat navy scrim, with fixed colors that don't follow the theme.
+- The hero is the same in both themes: the winter night photo under a flat navy scrim, with fixed colors that don't follow the theme. On the home page (`hero: true` in its front matter), the header lies over its top and takes its colors.
 - `styles/AGENTS.md` holds the token contract, type scale, layout, components, and CSS conventions.
 - **Theme switching.** Both theme sheets load on every page, media-scoped to `prefers-color-scheme`, so the page follows the OS with no JavaScript. `scripts/dark-mode.js` acts only when the toggle has stored an override.
 
@@ -84,9 +84,10 @@ The home page shows the newest three. `/updates/` lists all of them, and each ge
 
 ## Writing
 
-- Page copy is plain and concrete, with no hype. Headings are sentence case. Side-by-side copy (platform columns, developer cards) stays about the same length, so the columns wrap to the same number of lines.
+- Page copy is plain and concrete, with no hype. Headings are sentence case. Side-by-side copy (like the developer cards) stays about the same length, so the columns wrap to the same number of lines.
+- Say each thing once. The studio's name is in the hero's logo and the page title, so the header shows only the emblem; the tagline names the platforms, so they get no section of their own.
 - The meta description reads "UpNorth Gaming is …: …".
-- Alt text describes what's visible, in one sentence a listener can picture. Decorative images, like the emblem beside the name or the hero photo behind the logo, get `alt=""`.
+- Alt text describes what's visible, in one sentence a listener can picture. Decorative images, like the hero photo behind the logo, get `alt=""`. The header's emblem is the home link's only content, so its alt is the studio's name.
 - Code comments say why, in full sentences in the present tense. They name the source of a value and anything that must change with it. Use caps only to stop a plausible mistake, like renaming `overview-return`.
 
 ## Images

@@ -1,9 +1,11 @@
 /* Theme-independent layout and components. Colors come only from the tokens
-   in index-light.css and index-dark.css, except in the hero, which sits on the
-   same night photo in both themes and so keeps fixed colors of its own.
+   in index-light.css and index-dark.css, except in the hero (and the home
+   page's header over it), which sits on the same night photo in both themes
+   and so keeps fixed colors of its own.
 
    The look is deliberately flat: solid fills and hairline borders, with no
-   glass, glows, gradients, or decorative shadows. */
+   glass, glows, gradients, or decorative shadows. The one exception is the
+   home page's header, which fades into the hero's photo. */
 
 /* Tokens ----------------------------------------------------------------- */
 
@@ -119,14 +121,10 @@ iframe:focus-visible {
     padding-bottom: .5rem;
 }
 
+/* Just the emblem: the name is already in the page title and the home page's
+   logo. */
 .brand {
     display: flex;
-    align-items: center;
-    gap: .6rem;
-    color: var(--fg);
-    font-weight: 700;
-    letter-spacing: -.01em;
-    text-decoration: none;
 }
 
 .brand img {
@@ -253,6 +251,12 @@ iframe:focus-visible {
     text-wrap: balance;
 }
 
+/* The ice, as for the hero's focus rings: the page's link color is too dark
+   for the photo in the light theme. The ice holds 6:1 over the scrim. */
+.tagline a {
+    color: var(--brand-ice);
+}
+
 .hero-logo {
     width: min(100%, 22rem);
     justify-self: center;
@@ -337,46 +341,6 @@ iframe:focus-visible {
     color: var(--secondary);
     font-size: 1.1rem;
     line-height: 1.6;
-    text-wrap: pretty;
-}
-
-/* Platforms -------------------------------------------------------------- */
-
-/* Plain columns between hairlines rather than cards, since nothing here is a
-   link. */
-.details {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    row-gap: 2.5rem;
-}
-
-.detail {
-    padding: .25rem 1.5rem;
-}
-
-.detail:first-child {
-    padding-left: 0;
-}
-
-.detail:not(:first-child) {
-    border-left: 1px solid var(--hairline);
-}
-
-.detail svg {
-    width: 1.75rem;
-    height: 1.75rem;
-    margin-bottom: .9rem;
-    color: var(--accent-text);
-}
-
-.detail h3 {
-    font-size: 1.2rem;
-    font-weight: 700;
-}
-
-.detail p {
-    margin-top: .35rem;
-    color: var(--secondary);
     text-wrap: pretty;
 }
 
@@ -739,24 +703,6 @@ iframe:focus-visible {
     }
 }
 
-/* In em, so enlarged text stacks the columns before they get too narrow. */
-@media (max-width: 45em) {
-    .details {
-        grid-template-columns: minmax(0, 1fr);
-        row-gap: 0;
-    }
-
-    .detail,
-    .detail:first-child {
-        padding: 1.25rem 0;
-    }
-
-    .detail:not(:first-child) {
-        border-left: none;
-        border-top: 1px solid var(--hairline);
-    }
-}
-
 @media (max-width: 600px) {
     .section-hero {
         padding: 3.5rem 0;
@@ -771,9 +717,10 @@ iframe:focus-visible {
     }
 }
 
-/* Phones, or enlarged text: the theme toggle stays beside the brand and the
-   links take a row of their own, rather than wrapping one at a time. */
-@media (max-width: 40em) {
+/* Narrow phones, or enlarged text: the theme toggle stays beside the brand
+   and the links take a row of their own, rather than wrapping one at a time.
+   One row needs about 19rem; 22em leaves room for wider system fonts. */
+@media (max-width: 22em) {
     .theme-toggle {
         margin-left: auto;
     }
@@ -782,6 +729,58 @@ iframe:focus-visible {
         order: 1;
         flex-basis: 100%;
         margin-left: -.65rem;
+    }
+}
+
+/* Wide enough to hold one row, the home page's header lies over the top of
+   the hero's photo, so the two read as one. Narrower, its links take rows of
+   their own, so its height isn't fixed and it stays above the hero instead.
+   Its colors are the hero's, fixed in both themes. Keep this query the
+   inverse of the one above. */
+@media not all and (max-width: 22em) {
+    .site-header-over-hero {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 2;
+        border-bottom: none;
+        /* The scrim's navy, fading out. The scrim alone holds the cream at
+           7.1:1, so the fade only adds contrast. */
+        background: linear-gradient(rgba(8, 17, 30, .6), rgba(8, 17, 30, 0));
+    }
+
+    .site-header-over-hero .top-link,
+    .site-header-over-hero .top-btn {
+        color: var(--brand-cream);
+    }
+
+    /* As in the hero: the ice, since the light theme's focus color is too
+       dark for the photo. */
+    .site-header-over-hero a:focus-visible,
+    .site-header-over-hero button:focus-visible {
+        outline-color: var(--brand-ice);
+    }
+
+    /* The hero's own padding, plus the header's 4rem (its min-height, which a
+       single row never exceeds). If the header ever wraps to two rows, about
+       7rem, it still clears the hero's content. */
+    .site-header-over-hero ~ main .section-hero {
+        padding-top: 9.5rem;
+    }
+
+    @media (max-width: 600px) {
+        .site-header-over-hero ~ main .section-hero {
+            padding-top: 7.5rem;
+        }
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        .site-header-over-hero .top-link:hover,
+        .site-header-over-hero .top-btn:hover {
+            background: rgba(248, 241, 227, .1);
+            color: var(--brand-cream);
+        }
     }
 }
 

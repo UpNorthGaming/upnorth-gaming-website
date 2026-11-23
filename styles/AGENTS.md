@@ -12,7 +12,7 @@ Three sheets, published verbatim (no front matter):
 
 ## Flat
 
-No glass, `backdrop-filter`, glows, gradients, gradient text, or decorative `box-shadow`. Use these instead:
+No glass, `backdrop-filter`, glows, gradients, gradient text, or decorative `box-shadow`. The one exception is `.site-header-over-hero` (see Components), whose fade of the scrim's navy blends the header into the hero's photo. Use these instead:
 - **Depth:** a solid `--surface` on `--bg`, separated by a 1px `--hairline`.
 - **Hover:** a color change. A card's border and title turn `--accent-text`; a button's fill shifts. Nothing lifts or scales.
 - **Shape:** radius `.75rem` (`--radius`) for cards and media, `.55rem` for buttons, and `999px` for chips and tags.
@@ -28,7 +28,7 @@ Both theme sheets define all of these on `:root`, after `color-scheme`. Note eac
 | `--secondary` | Secondary text | `#46607a` | `#b3c3d3` | 4.5:1 on `--bg` and `--surface` |
 | `--accent` | Fills (skip link) | `#efa933` (logo gold) | `#efa933` | Never text on `--bg` |
 | `--on-accent` | Text on `--accent` | `#0a2f4a` | `#0b1421` | 4.5:1 on `--accent` |
-| `--accent-text` | Links, focus rings, hover, platform icons | `#1b5f8f` | `#b8e5ff` (logo ice) | 4.5:1 on `--bg` and `--surface` |
+| `--accent-text` | Links, focus rings, hover | `#1b5f8f` | `#b8e5ff` (logo ice) | 4.5:1 on `--bg` and `--surface` |
 | `--chip-bg` / `--chip-fg` | Section chips | gold / navy | gold / `--bg` | 4.5:1 |
 | `--surface` | Cards, scroll-to-top button | `#ffffff` | `#111e2e` | |
 | `--hairline` | Dividers that only separate | navy at .12 | cream at .12 | |
@@ -38,7 +38,7 @@ Both theme sheets define all of these on `:root`, after `color-scheme`. Note eac
 
 ## The hero
 
-The hero is the same in both themes. The night photo (`.hero-photo`) sits under `.section-hero::before`, a flat `rgba(8, 17, 30, .65)` scrim, and its text uses the `--brand-*` colors directly. The scrim's strength comes from the photo's brightest .5% (`#adcceb`, on the lake): cream holds 7.1:1 there and ice 6:1. Re-measure if the photo or scrim changes.
+The hero is the same in both themes. The night photo (`.hero-photo`) sits under `.section-hero::before`, a flat `rgba(8, 17, 30, .65)` scrim, and its text uses the `--brand-*` colors directly. The tagline's link and the hero's focus rings are ice, since `--accent-text` is too dark for the photo in the light theme. The scrim's strength comes from the photo's brightest .5% (`#adcceb`, on the lake): cream holds 7.1:1 there and ice 6:1. Re-measure if the photo or scrim changes.
 
 ## Type
 
@@ -63,14 +63,14 @@ The hero is the same in both themes. The night photo (`.hero-photo`) sits under 
 
 - `.container`: `max-width: 68rem`, centered, `padding: 0 1.25rem`.
 - `.section`: `padding: 5rem 0`, with a top hairline between consecutive sections. `.section-head` holds the chip, `h2`, and intro at `max-width: 42rem`.
-- `.details`: the platform columns. Three `1fr` columns divided by hairlines, not cards, since they aren't links. Below `45em` they stack, divided by top hairlines.
 - `.update-grid`: `repeat(auto-fill, minmax(min(100%, 18rem), 1fr))`. Each `.update-card` is a single link.
 - `.team-grid`: two columns, stacking at 820px.
 - `.post`: one column at `max-width: 44rem`.
 
 ## Components
 
-- **Header:** a wrapping flex row, so links drop to a second row rather than overflowing. Below `40em` the toggle stays beside the brand and the nav takes a full row.
+- **Header:** the emblem (the home link), the nav, and the theme toggle, in a wrapping flex row, so links drop to a second row rather than overflowing. One row needs about 19rem, so below `22em` the toggle stays beside the emblem and the nav takes a full row.
+- **`.site-header-over-hero`:** on pages with `hero: true` (the home page), above `22em`, the header is absolute over the hero's top, with a `rgba(8, 17, 30, .6)`-to-transparent fade and the hero's fixed colors (cream links, ice focus rings) in both themes. The hero adds the header's 4rem to its top padding. Below `22em` it's the normal themed header above the hero, since the nav's rows make its height unknown.
 - **`.top-link` / `.top-btn`:** `--secondary` text. On hover, they get a `--hairline` fill and `--fg` text. `aria-current` links are `--fg`.
 - **Buttons:** `.btn-primary` is gold with navy text (6.8:1). `.btn-ghost` is the hero's cream outline. Both are `min-height: 3rem`, `max-width: 100%`, and `padding: .4rem 1.3rem`. Labels may wrap: never `white-space: nowrap`, and never widen a button with padding or `min-width` to match its neighbor.
 - **Chips:** `.chip` is a flat `--chip-bg` pill above a section `h2`.
@@ -90,7 +90,7 @@ The hero is the same in both themes. The night photo (`.hero-photo`) sits under 
 
 - At 820px: the hero stacks with the logo first, sections drop to `4rem` padding, and the team stacks.
 - At 600px: the hero padding shrinks and developer cards stack the avatar above the text.
-- Pixel queries miss enlarged text, so anything that could overflow when text grows (the details columns, the header) uses an `em` query.
+- Pixel queries miss enlarged text, so anything that could overflow when text grows (the header) uses an `em` query.
 - Support 320px wide at 200% text with no horizontal scroll. Measure text too: a long word can run out of its box without widening the page, and the hero's `overflow: clip` hides it.
 
 ## CSS conventions

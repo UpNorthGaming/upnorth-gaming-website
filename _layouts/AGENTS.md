@@ -9,7 +9,7 @@ These rules cover `_layouts/` and `_includes/`. Both hold Liquid templates that 
 | `_layouts/default.html` | The shell of every page: `<head>`, skip link, header, `<main id="main">`, footer, and scroll-to-top button. |
 | `_layouts/post.html` | One devlog post inside `default`: back link, date and platform, title, Markdown body, YouTube embed, then images. `_config.yml`'s `defaults` apply it to every post. |
 | `_includes/head.html` | The whole `<head>`. Works out the title, description, and link-preview image from page variables. |
-| `_includes/header.html` | Brand link, main nav, and theme toggle. |
+| `_includes/header.html` | Emblem home link (alt "UpNorth Gaming", with no name beside it), main nav, and theme toggle. A page with `hero: true` gets `.site-header-over-hero`, which lays it over the hero. |
 | `_includes/footer.html` | Copyright and links, plus the `overview-return` button. |
 | `_includes/update-card.html` | A post as one card link (used on the home page and `/updates/`). Takes `post`, and `level` for its title's heading level (default 3; `/updates/` passes 2, since its cards sit under the page's `h1`). |
 | `_includes/update-meta.html` | A post's `<time>` and platform tag. Takes `post`. |
