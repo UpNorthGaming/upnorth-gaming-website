@@ -12,7 +12,7 @@ These rules cover `_layouts/` and `_includes/`. Both hold Liquid templates that 
 | `_includes/header.html` | Emblem home link (alt "UpNorth Gaming", with no name beside it), main nav, and theme toggle. A page with `hero: true` gets `.site-header-over-hero`, which lays it over the hero. |
 | `_includes/footer.html` | Copyright and the RSS feed link, plus the `overview-return` button. |
 | `_includes/update-card.html` | A post as one card link (used on the home page and `/updates/`). Takes `post`, and `level` for its title's heading level (default 3; `/updates/` passes 2, since its cards sit under the page's `h1`). |
-| `_includes/game-card.html` | A game from `_games/` as a card, used in the home page's "Our Games" section. Takes `game`. Not a link, since a game can have several store links; each of its `links` is a `.btn-store` button instead. |
+| `_includes/game-card.html` | A game from `_games/` as a card, used in the home page's "Our games" section. Takes `game`. Not a link, since a game can have several store links; each of its `links` is a `.btn-store` button instead. |
 | `_includes/update-meta.html` | A post's `<time>` and platform tag. Takes `post`. |
 | `_includes/youtube.html` | A youtube-nocookie embed. Takes `id` and `title`. |
 

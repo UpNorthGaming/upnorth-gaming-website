@@ -84,7 +84,7 @@ Released games are Markdown files in `_games/` named `slug.md`, the `games` coll
 - `cover`, which lives in `images/games/`
 - `links` (`{label, url}` pairs, one button each)
 
-They have no pages (`output: false`). The home page's "Our Games" section shows them all as cards, newest `date` first, and holds back future-dated ones like posts. With none, it shows an empty state. Keep the two contracts parallel: when a field or rule changes for one, consider the other. The full contract and a template are in [`_games/AGENTS.md`](_games/AGENTS.md); the human guide is in `DEVELOPMENT.md`.
+They have no pages (`output: false`). The home page's "Our games" section shows them all as cards, newest `date` first, and holds back future-dated ones like posts. With none, it shows an empty state. Keep the two contracts parallel: when a field or rule changes for one, consider the other. The full contract and a template are in [`_games/AGENTS.md`](_games/AGENTS.md); the human guide is in `DEVELOPMENT.md`.
 
 ## Accessibility
 

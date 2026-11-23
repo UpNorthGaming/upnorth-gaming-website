@@ -97,7 +97,7 @@ Edit its file and push. To unpublish a post, delete the file, or add `published:
 
 ## Adding a game
 
-Each released game is one Markdown file in `_games/`, written the same way as a devlog post. Jekyll turns it into a card in the home page's "Our Games" section, with a button for each store it's on. Games don't get pages of their own. Until the first one is added, the section says the first game is in development.
+Each released game is one Markdown file in `_games/`, written the same way as a devlog post. Jekyll turns it into a card in the home page's "Our games" section, with a button for each store it's on. Games don't get pages of their own. Until the first one is added, the section says the first game is in development.
 
 ### 1. Name the file
 

@@ -1,6 +1,6 @@
 # Games
 
-Every Markdown file here with front matter is a released game, shown as a card in the home page's "Our Games" section. They're the `games` collection in `_config.yml`, with `output: false`: a game has no page of its own, and its card's buttons link out to stores. This file and `CLAUDE.md` have no front matter, so they're never games (`_config.yml` excludes them by path too). `DEVELOPMENT.md` has the step-by-step guide for people; this is the contract. It mirrors [`_posts/AGENTS.md`](../_posts/AGENTS.md) wherever it can, so adding a game feels like adding a post.
+Every Markdown file here with front matter is a released game, shown as a card in the home page's "Our games" section. They're the `games` collection in `_config.yml`, with `output: false`: a game has no page of its own, and its card's buttons link out to stores. This file and `CLAUDE.md` have no front matter, so they're never games (`_config.yml` excludes them by path too). `DEVELOPMENT.md` has the step-by-step guide for people; this is the contract. It mirrors [`_posts/AGENTS.md`](../_posts/AGENTS.md) wherever it can, so adding a game feels like adding a post.
 
 ## Naming
 
