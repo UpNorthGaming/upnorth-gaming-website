@@ -17,8 +17,6 @@
     --on-accent: #0b1421;
     /* The logo's ice, lifted: 13.8:1 on --bg, 12.6:1 on --surface. */
     --accent-text: #b8e5ff;
-    --chip-bg: #efa933;
-    --chip-fg: #0b1421;
     --surface: #111e2e;
     /* Dividers that only separate. */
     --hairline: rgba(248, 241, 227, .12);

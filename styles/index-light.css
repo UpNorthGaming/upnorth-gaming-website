@@ -17,8 +17,6 @@
     /* The logo's ice blue, deepened for links, focus rings and hover: 6.4:1 on
        --bg, 6.8:1 on --surface. */
     --accent-text: #1b5f8f;
-    --chip-bg: #efa933;
-    --chip-fg: #0a2f4a;
     --surface: #ffffff;
     /* Dividers that only separate. */
     --hairline: rgba(10, 47, 74, .12);

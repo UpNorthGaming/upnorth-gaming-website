@@ -316,17 +316,6 @@ iframe:focus-visible {
     margin-bottom: 2.5rem;
 }
 
-.chip {
-    display: inline-flex;
-    margin-bottom: 1rem;
-    padding: .3rem .85rem;
-    border-radius: 999px;
-    background: var(--chip-bg);
-    color: var(--chip-fg);
-    font-size: .875rem;
-    font-weight: 600;
-}
-
 .section-head h2,
 .page-head h1 {
     font-size: clamp(1.9rem, 3.5vw, 2.6rem);
@@ -335,8 +324,8 @@ iframe:focus-visible {
     line-height: 1.1;
 }
 
-.section-head p:not(.chip),
-.page-head p:not(.chip) {
+.section-head p,
+.page-head p {
     margin-top: 1rem;
     color: var(--secondary);
     font-size: 1.1rem;
