@@ -1,8 +1,8 @@
 # upnorthgaming.com
 
-The UpNorth Gaming studio site: a home page (hero, the latest devlog posts, and the team), a devlog archive at `/updates/`, and a page per post. GitHub Pages builds it with Jekyll from the root of `main` and serves it at `upnorthgaming.com` (`CNAME`). There is no other build step: pushing to `main` publishes.
+The UpNorth Gaming studio site: a home page (hero, the released games, the latest devlog posts, and the team), a devlog archive at `/updates/`, and a page per post. GitHub Pages builds it with Jekyll from the root of `main` and serves it at `upnorthgaming.com` (`CNAME`). There is no other build step: pushing to `main` publishes.
 
-Folders with their own rules have their own `AGENTS.md`: [`_posts/`](_posts/AGENTS.md), [`_layouts/`](_layouts/AGENTS.md) (also covers `_includes/`), [`styles/`](styles/AGENTS.md), [`scripts/`](scripts/AGENTS.md), and [`scripts/brand/`](scripts/brand/AGENTS.md). Each `CLAUDE.md` is a symlink to the `AGENTS.md` beside it.
+Folders with their own rules have their own `AGENTS.md`: [`_posts/`](_posts/AGENTS.md), [`_games/`](_games/AGENTS.md), [`_layouts/`](_layouts/AGENTS.md) (also covers `_includes/`), [`styles/`](styles/AGENTS.md), [`scripts/`](scripts/AGENTS.md), and [`scripts/brand/`](scripts/brand/AGENTS.md). Each `CLAUDE.md` is a symlink to the `AGENTS.md` beside it.
 
 ## Stack
 
@@ -19,13 +19,15 @@ updates.html                Devlog archive at /updates/ (its permalink), every p
 404.html                    Not-found page (Pages serves it for any missing path)
 _config.yml                 Jekyll config, including the `exclude` list
 _layouts/                   Page shells: default (every page) and post
-_includes/                  head, header, footer, update-card, update-meta, youtube
+_includes/                  head, header, footer, update-card, update-meta, game-card, youtube
 _posts/                     Devlog posts, one Markdown file each
+_games/                     Released games, one Markdown file each (no pages of their own)
 styles/                     index-common.css, index-light.css, index-dark.css
 scripts/                    dark-mode.js, overview-return.js, serve.sh (local server)
 scripts/brand/              Unpublished masters, asset script, link preview source
 images/                     logo.webp, logo-mark.png, hero-winter.webp, og-image.png
 images/devlog/              Post images
+images/games/               Game covers
 favicon.png, favicon.ico, apple-touch-icon.png
 .agents/                    Agent checks and skills (.claude/ and .codex/ link here)
 CNAME, Gemfile, .gitignore
@@ -57,7 +59,8 @@ AGENTS.md, CLAUDE.md, README.md, DEVELOPMENT.md
 | A theme's `--bg` | The `theme-color` metas in `_includes/head.html`, `scripts/dark-mode.js`, and, for dark, the link preview |
 | Logo | `scripts/brand/logo-master.png`, then rerun `scripts/brand/export_assets.py` (header mark, favicons, touch icon), re-encode `logo.webp`, and re-render the link preview |
 | Name, tagline, hero copy, or hero photo | `index.html` and `scripts/brand/og-image.html` together, then re-render the link preview |
-| An image's pixel size | Its `<img>` `width` and `height` (or a post's `images` entry) |
+| An image's pixel size | Its `<img>` `width` and `height` (or a post's `images` entry, or a game's `cover`) |
+| The platform names (`Mobile`, `Console`, `board.fun`) | `_posts/AGENTS.md`, `_games/AGENTS.md`, `DEVELOPMENT.md`, and `.agents/checks/post-rules.md` and `game-rules.md` |
 | A new unpublished file, or a new `AGENTS.md`/`CLAUDE.md` | `_config.yml` `exclude` |
 | Files, conventions, or behavior | This file, the nearest folder `AGENTS.md`, and `DEVELOPMENT.md` (keep `README.md` to a short overview) |
 
@@ -71,6 +74,17 @@ Posts are Markdown files in `_posts/` named `YYYY-MM-DD-slug.md`. Their front ma
 - `youtube` (a bare video id)
 
 The home page shows the newest three. `/updates/` lists all of them, and each gets `/updates/YYYY/MM/DD/slug/`. A post dated in the future isn't published until a later build. The full contract and a template are in [`_posts/AGENTS.md`](_posts/AGENTS.md); the human guide is in `DEVELOPMENT.md`.
+
+## Games
+
+Released games are Markdown files in `_games/` named `slug.md`, the `games` collection, written like posts so adding one feels the same. Their front matter can set:
+- `title` and `date` (the release date), both required
+- `platforms` (a list of the same names posts use)
+- `description`
+- `cover`, which lives in `images/games/`
+- `links` (`{label, url}` pairs, one button each)
+
+They have no pages (`output: false`). The home page's "Our Games" section shows them all as cards, newest `date` first, and holds back future-dated ones like posts. With none, it shows an empty state. Keep the two contracts parallel: when a field or rule changes for one, consider the other. The full contract and a template are in [`_games/AGENTS.md`](_games/AGENTS.md); the human guide is in `DEVELOPMENT.md`.
 
 ## Accessibility
 
@@ -112,19 +126,20 @@ rm -rf "$profile"; file images/og-image.png
 
 ## Verify
 
-Serve with `scripts/serve.sh` (`bundle exec jekyll serve` at `http://localhost:4000`) rather than opening files, so permalinks, includes, and the feed behave as on Pages. To exercise the devlog, add a throwaway post with two images and a `youtube` id, then delete it before committing. Check:
+Serve with `scripts/serve.sh` (`bundle exec jekyll serve` at `http://localhost:4000`) rather than opening files, so permalinks, includes, and the feed behave as on Pages. To exercise the devlog, add a throwaway post with two images and a `youtube` id. To exercise games, add throwaway games with and without a cover, several links, and a future `date`. Delete them before committing. Check:
 
 - **Themes.** Both themes from the OS setting and from the toggle, after a reload too, with `aria-pressed` following. With JavaScript off, the page still follows the OS.
 - **Narrow screens.** 320px wide at 100% and 200% text: no horizontal scroll, nothing clipped.
 - **Devlog.** Home cards, `/updates/`, a post page, the empty state with no posts, and the 404 page.
-- **Unpublished files.** `_site/` contains nothing from `scripts/brand/`, `.agents/`, or any `AGENTS.md`, `CLAUDE.md`, `README.md`, or `DEVELOPMENT.md`.
+- **Games.** Cards in `date` order with the future one held back, the emblem on a game without a cover, store buttons lined up at the cards' bottoms, and the empty state with no games.
+- **Unpublished files.** `_site/` contains nothing from `scripts/brand/`, `.agents/`, or `_games/`, or any `AGENTS.md`, `CLAUDE.md`, `README.md`, or `DEVELOPMENT.md`.
 
 Headless Chrome follows the OS appearance. Force light with `--blink-settings=preferredColorScheme=1` and dark with `--force-dark-mode`. `--window-size` won't go below 500px wide, so for 320px, frame the page in a 320px `<iframe>` on a page served from the same origin (so a script can also set the frame's root `font-size` to 200%), or use a browser's responsive mode.
 
 ## Agent skills and checks
 
 - `.agents/skills/self-review-diff/` is a copy of Aidan's global skill, so everyone working here has it. Re-sync it when the original changes.
-- `.agents/checks/` holds lint-style rules for `scripts/`, `styles/`, the HTML and Liquid templates, and `_posts/`.
+- `.agents/checks/` holds lint-style rules for `scripts/`, `styles/`, the HTML and Liquid templates, `_posts/`, and `_games/`.
 - `.claude/` and `.codex/` link both folders, so Claude Code and Codex find them.
 
 ## Commits

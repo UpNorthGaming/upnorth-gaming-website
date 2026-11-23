@@ -6,7 +6,7 @@ globs: ["*.html", "_layouts/*.html", "_includes/*.html"]
 
 - Every internal URL goes through `| relative_url`; URLs in meta tags use `| absolute_url`. No hard-coded `/…` paths.
 - Every `<img>` has `width`, `height`, and `decoding="async"`, plus `fetchpriority="high"` for the hero's images or `loading="lazy"` below the fold (small above-the-fold images, like the header mark, take neither). Decorative images have `alt=""`; others have alt text describing what's visible. The header's emblem is the home link's only content, so its alt is "UpNorth Gaming".
-- Free-text front-matter values printed into HTML (titles, descriptions, alt text, platform) are escaped with `| escape`.
+- Free-text front-matter values printed into HTML (titles, descriptions, alt text, platforms, link labels and URLs) are escaped with `| escape`.
 - Every `<button>` has `type="button"`. Icon-only controls have an `aria-label`, and their SVGs have `aria-hidden="true"`. A toggle uses `aria-pressed`.
 - Inline SVG icons are Feather-style: `viewBox="0 0 24 24"`, `fill="none"`, `stroke="currentColor"`, `stroke-width="2"`, round caps and joins.
 - The viewport meta never contains `user-scalable=no`.

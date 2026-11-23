@@ -1,0 +1,35 @@
+{%- comment -%}
+    One game from _games/ as a card. Takes `game`. Unlike a devlog card it
+    isn't a link, since a game can have a store link per platform; each entry
+    in its `links` is a button instead. Its cover is `cover`, or the emblem
+    without one; the summary is its description or the body's first paragraph.
+{%- endcomment -%}
+<article class="card game-card">
+    {%- assign cover = include.game.cover %}
+    {%- if cover %}
+    <img class="card-cover" src="{{ cover.src | prepend: '/images/games/' | relative_url }}" alt="{{ cover.alt | escape }}" width="{{ cover.width }}" height="{{ cover.height }}" loading="lazy" decoding="async">
+    {%- else %}
+    {%- comment -%} A game without a cover gets the emblem on navy, so cards in a row match. {%- endcomment -%}
+    <div class="card-cover card-cover-empty">
+        <img src="{{ '/images/logo-mark.png' | relative_url }}" alt="" width="95" height="80" loading="lazy" decoding="async">
+    </div>
+    {%- endif %}
+    <div class="card-body">
+        {%- if include.game.platforms.size > 0 %}
+        <ul class="game-platforms" aria-label="Platforms">
+            {%- for platform in include.game.platforms %}
+            <li class="platform-tag">{{ platform | escape }}</li>
+            {%- endfor %}
+        </ul>
+        {%- endif %}
+        <h3 class="card-title">{{ include.game.title | escape }}</h3>
+        <p class="card-summary">{{ include.game.description | default: include.game.excerpt | strip_html | normalize_whitespace | truncate: 140 | escape }}</p>
+        {%- if include.game.links.size > 0 %}
+        <ul class="store-links">
+            {%- for link in include.game.links %}
+            <li><a class="btn-store" href="{{ link.url | escape }}">{{ link.label | escape }}</a></li>
+            {%- endfor %}
+        </ul>
+        {%- endif %}
+    </div>
+</article>

@@ -13,7 +13,7 @@ Every file here named `YYYY-MM-DD-slug.md` is a devlog post. Jekyll skips any ot
 | Field | Type | Rendered by | Notes |
 |---|---|---|---|
 | `title` | string, required | `_layouts/post.html`, `_includes/update-card.html`, `<title>`, `og:title`, the feed | Sentence case, no trailing period. |
-| `platform` | `Mobile` \| `Console` \| `board.fun` | `_includes/update-meta.html` as `.platform-tag` | Must match `index.html`'s platform names exactly. Omit it for studio-wide posts. |
+| `platform` | `Mobile` \| `Console` \| `board.fun` | `_includes/update-meta.html` as `.platform-tag` | Must match `index.html`'s platform names exactly, and the names games use in `platforms` (`_games/AGENTS.md`). Omit it for studio-wide posts. |
 | `description` | string | `<meta name="description">`, `og:description`, the card summary | One sentence, about 160 characters at most. Falls back to the excerpt (the first paragraph). |
 | `images` | list of `{src, alt, width, height}` | `post.html`'s `.post-media`; the first one is also the card cover and `og:image` | `src` is a bare filename inside `images/devlog/`. `width` and `height` are the file's real pixel size. Every entry needs `alt`. |
 | `youtube` | string | `_includes/youtube.html` | The bare video id (`aqz-KE-bpKQ`), never a URL. Embedded from youtube-nocookie.com. |

@@ -22,6 +22,31 @@ hero: true
     </div>
 </section>
 
+<section class="section" id="games">
+    <div class="container">
+        <div class="section-head">
+            <h2>Our Games</h2>
+            <p>The games we've released, and where to play them.</p>
+        </div>
+
+        {%- comment -%}
+            Newest release first. Jekyll only holds back future-dated posts, so
+            this does the same for games: one dated ahead appears with the first
+            build on or after that day.
+        {%- endcomment -%}
+        {%- assign games = site.games | where_exp: "game", "game.date <= site.time" | sort: "date" | reverse %}
+        {%- if games.size > 0 %}
+        <div class="card-grid">
+            {%- for game in games %}
+            {% include game-card.html game=game %}
+            {%- endfor %}
+        </div>
+        {%- else %}
+        <p class="empty-state">Our first game is in development. It will appear here once it's out; until then, follow along in the <a href="#updates">devlog</a>.</p>
+        {%- endif %}
+    </div>
+</section>
+
 <section class="section" id="updates">
     <div class="container">
         <div class="section-head">

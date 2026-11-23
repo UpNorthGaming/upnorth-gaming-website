@@ -12,6 +12,11 @@ markdown: kramdown
 # an unused assets/css/style.css; every page here uses its own layouts.
 theme: null
 permalink: /updates/:year/:month/:day/:title/
+# Games in _games/ show up only as cards on the home page, whose buttons link
+# to stores, so they get no pages of their own.
+collections:
+  games:
+    output: false
 defaults:
   - scope:
       path: ""
@@ -48,6 +53,8 @@ exclude:
   - _layouts/CLAUDE.md
   - _posts/AGENTS.md
   - _posts/CLAUDE.md
+  - _games/AGENTS.md
+  - _games/CLAUDE.md
   - styles/AGENTS.md
   - styles/CLAUDE.md
   - scripts/AGENTS.md

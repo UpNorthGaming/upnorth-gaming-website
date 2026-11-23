@@ -1,6 +1,6 @@
 # Development
 
-How to run the site locally, post devlog updates, and set up hosting. For how the site is built (structure, theming, accessibility, regenerating images, commit conventions), see [`AGENTS.md`](AGENTS.md).
+How to run the site locally, post devlog updates, add games, and set up hosting. For how the site is built (structure, theming, accessibility, regenerating images, commit conventions), see [`AGENTS.md`](AGENTS.md).
 
 ## Run it locally
 
@@ -30,6 +30,7 @@ Each update is one Markdown file in `_posts/`. Jekyll turns it into:
 - The date in the name is the post's date. Posts are ordered by it, newest first.
 - The rest becomes the address: `/updates/2026/12/04/frozen-lake-level/`.
 - A post dated in the future stays hidden until the site is rebuilt on or after that date. Any later push rebuilds it.
+- Jekyll only reads files in `_posts/` whose names start with the date, so it can't move into the front matter. Games don't have this rule (see [Adding a game](#adding-a-game)).
 
 ### 2. Write the front matter
 
@@ -93,6 +94,66 @@ Preview with `scripts/serve.sh`, then commit and push to `main`. GitHub Pages re
 ### Editing or removing a post
 
 Edit its file and push. To unpublish a post, delete the file, or add `published: false` to its front matter to keep it as a draft. Renaming a file changes its address, which breaks links people have shared.
+
+## Adding a game
+
+Each released game is one Markdown file in `_games/`, written the same way as a devlog post. Jekyll turns it into a card in the home page's "Our Games" section, with a button for each store it's on. Games don't get pages of their own. Until the first one is added, the section says the first game is in development.
+
+### 1. Name the file
+
+`_games/short-name.md`, for example `_games/frozen-lake.md`. Unlike posts, the name has no date in it; the release date goes in the front matter instead. The name never shows on the site, so it's safe to rename.
+
+### 2. Write the front matter
+
+```markdown
+---
+title: Frozen Lake
+date: 2027-03-14
+platforms:
+  - Mobile
+  - Console
+description: Race across a thawing lake before the ice gives way.
+cover:
+  src: frozen-lake-cover.webp
+  alt: A sled racing across a cracked frozen lake toward a pine island at dusk.
+  width: 1200
+  height: 675
+links:
+  - label: Download on the App Store
+    url: https://apps.apple.com/app/frozen-lake/id0000000000
+  - label: Get it on Google Play
+    url: https://play.google.com/store/apps/details?id=com.upnorthgaming.frozenlake
+  - label: PlayStation Store
+    url: https://store.playstation.com/en-us/product/0000
+---
+Race across a thawing lake before the ice gives way, on your phone or your PS5.
+```
+
+| Field | Required | What it does |
+|---|---|---|
+| `title` | Yes | The game's name. |
+| `date` | Yes | The release date, as `YYYY-MM-DD`. Games are ordered by it, newest first. It isn't shown. A game dated in the future stays hidden until the site is rebuilt on or after that date, like a post. |
+| `platforms` | No | Tags on the card. Use `Mobile`, `Console`, or `board.fun`, the same names posts use. |
+| `description` | No | One sentence for the card. Without it, the first paragraph is used. |
+| `cover` | No | The card's image. Without it, the card shows the studio's emblem on navy. |
+| `links` | No | One button per store. `label` is the button's text, in your own words, and `url` is the full store address. |
+
+Only the body's first paragraph is used, and only when there's no `description`, since games have no page to show the rest on.
+
+### 3. Add the cover
+
+Put it in `images/games/`, named after the file, e.g. `frozen-lake-cover.webp`.
+
+- **Shape and size:** 16:9, 1200x675. The card crops anything else to 16:9.
+- **Format, color, `width`/`height`, and `alt`:** the same as devlog images (see [Add images](#3-add-images)).
+
+### 4. Publish
+
+Preview with `scripts/serve.sh`, then commit and push to `main`. On GitHub, use **Add file → Create new file** in the `_games` folder, and **Add file → Upload files** in `images/games/`.
+
+### Editing or removing a game
+
+Edit its file and push. To take a game down, delete the file, or add `published: false` to keep it for later.
 
 ## Hosting setup
 

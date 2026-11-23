@@ -14,7 +14,7 @@ Three sheets, published verbatim (no front matter):
 
 No glass, `backdrop-filter`, glows, gradients, gradient text, or decorative `box-shadow`. The one exception is `.site-header-over-hero` (see Components), whose fade of the scrim's navy blends the header into the hero's photo. Use these instead:
 - **Depth:** a solid `--surface` on `--bg`, separated by a 1px `--hairline`.
-- **Hover:** a color change. A card's border and title turn `--accent-text`; a button's fill shifts. Nothing lifts or scales.
+- **Hover:** a color change. A link card's border and title turn `--accent-text`; a button's fill shifts. Nothing lifts or scales.
 - **Shape:** radius `.75rem` (`--radius`) for cards and media, `.55rem` for buttons, and `999px` for tags.
 
 ## Tokens
@@ -51,6 +51,7 @@ The hero is the same in both themes. The night photo (`.hero-photo`) sits under 
 | Post `h1` | `clamp(min(1.9rem, 10vw), 4.5vw, 2.8rem)` | 700 | `-.03em` | 1.1 |
 | Post body | `1.075rem` | 400 | | 1.7 |
 | Button | `.95rem` | 600 | | |
+| Store button | `.9rem`, `overflow-wrap: anywhere` | 600 | | |
 | Footer | `.875rem` | 400 | | |
 
 - The font is the system stack in `--font`; there are no web fonts.
@@ -70,10 +71,10 @@ The hero is the same in both themes. The night photo (`.hero-photo`) sits under 
 - **Header:** the emblem (the home link), the nav, and the theme toggle, in a wrapping flex row, so links drop to a second row rather than overflowing. One row needs about 19rem, so below `22em` the toggle stays beside the emblem and the nav takes a full row.
 - **`.site-header-over-hero`:** on pages with `hero: true` (the home page), above `22em`, the header is absolute over the hero's top, with a `rgba(8, 17, 30, .6)`-to-transparent fade and the hero's fixed colors (cream links, ice focus rings) in both themes. The hero adds the header's 4rem to its top padding. Below `22em` it's the normal themed header above the hero, since the nav's rows make its height unknown.
 - **`.top-link` / `.top-btn`:** `--secondary` text. On hover, they get a `--hairline` fill and `--fg` text. `aria-current` links are `--fg`.
-- **Buttons:** `.btn-primary` is gold with navy text (6.8:1). `.btn-ghost` is the hero's cream outline. Both are `min-height: 3rem`, `max-width: 100%`, and `padding: .4rem 1.3rem`. Labels may wrap: never `white-space: nowrap`, and never widen a button with padding or `min-width` to match its neighbor.
-- **Cards:** `.card` is the box every card shares: `--surface`, a hairline border, and a 16:9 `.card-cover`, or `.card-cover-empty` (the emblem on navy) when there's no image, above `.card-body` with its `.card-title` and `.card-summary`. `.update-card` adds what a devlog card needs as a single link to its post: no underline, and on hover an `--accent-text` border and title.
+- **Buttons:** `.btn-primary` is gold with navy text (6.8:1). `.btn-ghost` is the hero's cream outline. Both are `min-height: 3rem`, `max-width: 100%`, and `padding: .4rem 1.3rem`. Labels may wrap: never `white-space: nowrap`, and never widen a button with padding or `min-width` to match its neighbor. `.btn-store`, a game card's store link, is a smaller themed outline: a `--hairline-strong` border and `--fg` text, `min-height: 2.75rem`, with a `--hairline` fill on hover. Its `overflow-wrap: anywhere` lets a long word like "PlayStation" break, since inside a flex item `break-word` doesn't.
+- **Cards:** `.card` is the box every card shares: `--surface`, a hairline border, and a 16:9 `.card-cover`, or `.card-cover-empty` (the emblem on navy) when there's no image, above `.card-body` with its `.card-title` and `.card-summary`. `.update-card` adds what a devlog card needs as a single link to its post: no underline, and on hover an `--accent-text` border and title. `.game-card` isn't a link: its body is a column with its `.game-platforms` tags at the top and its `.store-links` buttons pushed to the bottom, so they line up across a row.
 - **`.platform-tag`:** a `--hairline-strong` outline pill.
-- **`.empty-state`:** a dashed `--hairline-strong` box for the devlog with no posts.
+- **`.empty-state`:** a dashed `--hairline-strong` box in place of a card grid with nothing in it yet (the devlog and games).
 - **Avatars:** `.avatar` is a 4.5rem navy circle with gold initials. An `<img>` inside it fills the circle.
 - **`.overview-return`:** fixed `--fab-inset` from the bottom right. A `--surface` circle with a `--hairline-strong` border, hidden until `.visible`. **Never rename it** (see `scripts/AGENTS.md`).
 - **Focus:** `a`, `button`, and `iframe` get `outline: 2px solid var(--accent-text)` with `outline-offset: 2px` on `:focus-visible`.

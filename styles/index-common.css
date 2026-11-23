@@ -272,7 +272,8 @@ iframe:focus-visible {
 }
 
 .btn-primary,
-.btn-ghost {
+.btn-ghost,
+.btn-store {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -299,6 +300,20 @@ iframe:focus-visible {
 .btn-ghost {
     border-color: rgba(248, 241, 227, .55);
     color: var(--brand-cream);
+}
+
+/* A game card's store link: a themed outline, a step smaller than the hero's
+   buttons since several can share a card. The border is --hairline-strong,
+   which holds 3:1 as a control outline in both themes. `anywhere`, unlike the
+   body's `break-word`, lets a flex item shrink below its longest word, so a
+   label like "PlayStation" still fits a 320px card at 200% text. */
+.btn-store {
+    min-height: 2.75rem;
+    padding: .35rem 1rem;
+    border-color: var(--hairline-strong);
+    color: var(--fg);
+    font-size: .9rem;
+    overflow-wrap: anywhere;
 }
 
 /* Sections --------------------------------------------------------------- */
@@ -389,6 +404,53 @@ iframe:focus-visible {
     text-wrap: pretty;
 }
 
+.platform-tag {
+    padding: .1rem .55rem;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 999px;
+    color: var(--fg);
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+/* Shown in place of a card grid that has nothing in it yet. */
+.empty-state {
+    padding: 1.5rem;
+    border: 1px dashed var(--hairline-strong);
+    border-radius: var(--radius);
+    color: var(--secondary);
+}
+
+/* Games ------------------------------------------------------------------ */
+
+/* A game card isn't a link, since a game can have a store link per platform.
+   Its body is a column so the store links sit at the bottom, lined up across a
+   row of cards. */
+.game-card .card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.game-platforms,
+.store-links {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.game-platforms {
+    gap: .35rem;
+}
+
+.store-links {
+    gap: .5rem;
+    margin-top: auto;
+    padding-top: 1.25rem;
+}
+
 /* Devlog ----------------------------------------------------------------- */
 
 /* A whole card is one link to its post. */
@@ -404,22 +466,6 @@ iframe:focus-visible {
     gap: .35rem .6rem;
     color: var(--secondary);
     font-size: .875rem;
-}
-
-.platform-tag {
-    padding: .1rem .55rem;
-    border: 1px solid var(--hairline-strong);
-    border-radius: 999px;
-    color: var(--fg);
-    font-size: .8rem;
-    font-weight: 600;
-}
-
-.empty-state {
-    padding: 1.5rem;
-    border: 1px dashed var(--hairline-strong);
-    border-radius: var(--radius);
-    color: var(--secondary);
 }
 
 .more-link {
@@ -646,7 +692,8 @@ iframe:focus-visible {
 
 @media (hover: hover) and (pointer: fine) {
     .top-link:hover,
-    .top-btn:hover {
+    .top-btn:hover,
+    .btn-store:hover {
         background: var(--hairline);
         color: var(--fg);
     }
