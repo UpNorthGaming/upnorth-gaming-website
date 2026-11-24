@@ -62,7 +62,7 @@ AGENTS.md, CLAUDE.md, README.md, DEVELOPMENT.md
 | Name, tagline, hero copy, or hero photo | `index.html` and `scripts/brand/og-image.html` together, then re-render the link preview |
 | An image's pixel size | Its `<img>` `width` and `height` (or a post's `images` entry, or a game's `cover`) |
 | The platform names (`Mobile`, `Console`, `board.fun`) | `_posts/AGENTS.md`, `_games/AGENTS.md`, `DEVELOPMENT.md`, and `.agents/checks/post-rules.md` and `game-rules.md` |
-| A home section's `id`, heading, or order | The nav in `_includes/header.html` and the hero's buttons in `index.html`. If the nav's width changes, re-measure the header's `29em` and `22em` queries in `index-common.css` |
+| A home section's `id`, heading, or order | The nav in `_includes/header.html` and the hero's buttons in `index.html`. If the nav's width changes, re-measure the header's `29em` and `23em` queries in `index-common.css` |
 | A new unpublished file, or a new `AGENTS.md`/`CLAUDE.md` | `_config.yml` `exclude` |
 | Files, conventions, or behavior | This file, the nearest folder `AGENTS.md`, and `DEVELOPMENT.md` (keep `README.md` to a short overview) |
 
@@ -101,9 +101,9 @@ They have no pages (`output: false`). The home page's "Our games" section shows 
 ## Writing
 
 - Page copy is plain and concrete, with no hype. Headings are sentence case. Side-by-side copy (like the developer cards) stays about the same length, so the columns wrap to the same number of lines.
-- Say each thing once. The studio's name is in the hero's logo and the page title, so the header shows only the emblem; the tagline names the platforms, so they get no section of their own.
+- Say each thing once. The studio's name is in the hero's logo and the page title, so the header shows only the emblem, and on the home page, where the hero's logo sits right below it, not even that; the tagline names the platforms, so they get no section of their own.
 - The meta description reads "UpNorth Gaming is …: …".
-- Alt text describes what's visible, in one sentence a listener can picture. Decorative images, like the hero photo behind the logo, get `alt=""`. The header's emblem is the home link's only content, so its alt is the studio's name.
+- Alt text describes what's visible, in one sentence a listener can picture. Decorative images, like the hero photo behind the logo, get `alt=""`. The header's emblem (on every page but the home page) is the home link's only content, so its alt is the studio's name.
 - Code comments say why, in full sentences in the present tense. They name the source of a value and anything that must change with it. Use caps only to stop a plausible mistake, like renaming `overview-return`.
 
 ## Images
@@ -133,7 +133,7 @@ Serve with `scripts/serve.sh` (`bundle exec jekyll serve` at `http://localhost:4
 
 - **Themes.** Both themes from the OS setting and from the toggle, after a reload too, with `aria-pressed` following. With JavaScript off, the page still follows the OS.
 - **Narrow screens.** 320px wide at 100% and 200% text: no horizontal scroll, nothing clipped.
-- **Nav.** Each link lands on its section from the home page, a post, `/updates/`, and the 404 page. The header clears the hero's content on either side of `29em` and `22em`.
+- **Nav.** Each link lands on its section from the home page, a post, `/updates/`, and the 404 page. The header clears the hero's content on either side of `23em`, and the two-row header on other pages works on either side of `29em`.
 - **Devlog.** Home cards, `/updates/`, a post page, the empty state with no posts, and the 404 page.
 - **Games.** Cards in `date` order with the future one held back, the emblem on a game without a cover, store buttons lined up at the cards' bottoms, and the empty state with no games.
 - **Unpublished files.** `_site/` contains nothing from `scripts/brand/`, `.agents/`, or `_games/`, or any `AGENTS.md`, `CLAUDE.md`, `README.md`, or `DEVELOPMENT.md`.

@@ -1,9 +1,12 @@
 {%- comment -%} A page with `hero: true` in its front matter gets a header that lies over its hero. {%- endcomment -%}
 <header class="site-header{% if page.hero %} site-header-over-hero{% endif %}">
     <div class="container">
+        {%- comment -%} The hero's logo already names the studio, and the home page needs no link home, so only other pages get the emblem. {%- endcomment -%}
+        {%- unless page.hero %}
         <a class="brand" href="{{ '/' | relative_url }}">
             <img src="{{ '/images/logo-mark.png' | relative_url }}" alt="UpNorth Gaming" width="95" height="80" decoding="async">
         </a>
+        {%- endunless %}
 
         <nav class="top-nav" aria-label="Main">
             <a class="top-link" href="{{ '/#games' | relative_url }}">Games</a>

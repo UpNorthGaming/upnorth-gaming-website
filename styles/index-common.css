@@ -146,8 +146,17 @@ iframe:focus-visible {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    /* The nav fills the space before the toggle, so its links sit at the left
+       and the toggle at the right. A zero basis keeps the toggle on the nav's
+       row: when the links don't fit, they wrap inside the nav. */
+    flex: 1 1 0;
     gap: .25rem;
-    margin-left: auto;
+}
+
+/* With no brand before it (the home page), the first link's text lines up with
+   the container's edge, like the hero's copy. */
+.top-nav:first-child {
+    margin-left: -.65rem;
 }
 
 .top-link {
@@ -774,15 +783,25 @@ iframe:focus-visible {
         padding: 4rem 0;
     }
 
+    /* Stacked under the logo, the copy is centered on it. */
     .hero-inner {
         grid-template-columns: minmax(0, 1fr);
         gap: 2.5rem;
+        text-align: center;
     }
 
     .hero-logo {
         order: -1;
         width: min(60%, 15rem);
-        justify-self: start;
+    }
+
+    .tagline {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .cta-row {
+        justify-content: center;
     }
 
     .team-grid {
@@ -807,26 +826,28 @@ iframe:focus-visible {
 /* Phones, or enlarged text: the theme toggle stays beside the brand and the
    links take a row of their own, rather than wrapping one at a time. One row
    holding all three needs about 26rem; 29em leaves room for wider system
-   fonts. */
+   fonts. The home page's header has no brand, so these rules skip it. */
 @media (max-width: 29em) {
-    .theme-toggle {
+    .brand ~ .theme-toggle {
         margin-left: auto;
     }
 
-    .top-nav {
+    .brand ~ .top-nav {
         order: 1;
         flex-basis: 100%;
         margin-left: -.65rem;
     }
 }
 
-/* Wide enough for the links to fit one row of their own, the home page's
-   header lies over the top of the hero's photo, so the two read as one. The
-   links' row needs about 18rem; 22em leaves room for wider system fonts.
-   Narrower, the links themselves wrap, so the header's height isn't known and
+/* Wide enough for the links and the toggle to fit one row (the home page's
+   header has no brand), the home page's header lies over the top of the
+   hero's photo, so the two read as one. The row needs about 22rem (23.7rem in
+   Verdana); 23em keeps 375px phones over the hero, and if a wide font still
+   wraps the links, the header (about 6.1rem) stays inside the hero's top
+   padding. Narrower, the links wrap, so the header's height isn't known and
    it stays above the hero instead. Its colors are the hero's, fixed in both
    themes. */
-@media not all and (max-width: 22em) {
+@media not all and (max-width: 23em) {
     .site-header-over-hero {
         position: absolute;
         top: 0;
@@ -851,17 +872,10 @@ iframe:focus-visible {
         outline-color: var(--brand-ice);
     }
 
-    /* The hero's own padding, plus the header's height: 4rem for one row (its
-       min-height, which one row never exceeds), or 6.5rem for two (measured
-       at 6.4rem). Keep 29em in step with the two-row query above. */
+    /* The hero's own padding, plus the header's height: 4rem for its one row
+       (its min-height, which one row never exceeds). */
     .site-header-over-hero ~ main .section-hero {
         padding-top: calc(var(--hero-pad) + 4rem);
-    }
-
-    @media (max-width: 29em) {
-        .site-header-over-hero ~ main .section-hero {
-            padding-top: calc(var(--hero-pad) + 6.5rem);
-        }
     }
 
     @media (hover: hover) and (pointer: fine) {
