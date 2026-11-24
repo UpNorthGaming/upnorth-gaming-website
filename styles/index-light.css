@@ -35,3 +35,55 @@ html {
 .theme-toggle .icon-moon {
     display: block;
 }
+
+/* The sunlit lake is washed with ice-white so navy copy remains legible over
+   both the dark pines and the bright snow. Across the composited image,
+   navy holds at least 5.3:1 and #0a3654 at least 4.8:1. */
+.section-hero {
+    background-color: #d8eaf7;
+    background-image: url("../images/hero-lake-light.webp");
+    color: var(--brand-navy);
+}
+
+.section-hero::before {
+    background: rgba(244, 248, 251, .65);
+}
+
+.section-hero a:focus-visible {
+    outline-color: #0a3654;
+}
+
+.hero-eyebrow,
+.hero-copy h1 span,
+.tagline a {
+    color: #0a3654;
+}
+
+.btn-ghost {
+    border-color: var(--brand-navy);
+    color: var(--brand-navy);
+}
+
+@media not all and (max-width: 23em) {
+    .site-header-over-hero {
+        background: linear-gradient(rgba(244, 248, 251, .7), rgba(244, 248, 251, 0));
+    }
+
+    .site-header-over-hero .top-link,
+    .site-header-over-hero .top-btn {
+        color: var(--brand-navy);
+    }
+
+    .site-header-over-hero a:focus-visible,
+    .site-header-over-hero button:focus-visible {
+        outline-color: #0a3654;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        .site-header-over-hero .top-link:hover,
+        .site-header-over-hero .top-btn:hover {
+            background: rgba(10, 47, 74, .1);
+            color: var(--brand-navy);
+        }
+    }
+}

@@ -6,7 +6,7 @@ Unpublished sources (`_config.yml` excludes `scripts/brand/`). The site's publis
 |---|---|
 | `logo-master.png` | The original logo, 1312x1199 RGBA. Never edit it; regenerate from it. |
 | `logo-github-avatar.png` | The logo on an opaque background, for the GitHub organization's avatar. |
-| `hero-winter-master.jpg` | The hero photo at 1536x1024, sRGB. |
+| `hero-lake-light-master.png`, `hero-lake-dark-master.png` | Matching generated hero scenery at 1774x887, sRGB. |
 | `export_assets.py` | Regenerates the logo images and icons from `logo-master.png`. |
 | `og-image.html` | The source page for `images/og-image.png`. |
 
@@ -33,7 +33,7 @@ If the logo's size changes, update the `width`/`height` on its `<img>` tags (`in
 ## Photos
 
 - Convert any non-sRGB source to sRGB before anything else: `sips --matchTo "/System/Library/ColorSync/Profiles/sRGB Profile.icc" <file>`. Check with `sips -g profile <file>`. Browsers read untagged pixels as sRGB, so wide-gamut colors (like iPhone photos in Display P3) come out dull otherwise.
-- Downscale to at most 2x the size the photo displays at, and encode as WebP: `cwebp -q 80 -m 6 scripts/brand/hero-winter-master.jpg -o images/hero-winter.webp`.
+- Downscale to at most 2x the size the photo displays at, and encode as WebP: `cwebp -q 84 -m 6 scripts/brand/hero-lake-light-master.png -o images/hero-lake-light.webp` and the same command for `dark`.
 
 ## Link preview
 

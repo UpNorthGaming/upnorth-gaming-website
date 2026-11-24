@@ -1,7 +1,7 @@
 /* Theme-independent layout and components. Colors come only from the tokens
    in index-light.css and index-dark.css, except in the hero (and the home
-   page's header over it), which sits on the same night photo in both themes
-   and so keeps fixed colors of its own.
+   page's header over it), whose dark defaults are overridden by the light
+   theme sheet.
 
    The look is deliberately flat: solid fills and hairline borders, with no
    glass, glows, gradients, or decorative shadows. The one exception is the
@@ -191,46 +191,40 @@ iframe:focus-visible {
 
 /* Hero ------------------------------------------------------------------- */
 
-/* The night photo fills the hero in both themes, under one flat navy scrim at
-   .65. That's what the hero's text needs: over the brightest .5% of the photo
-   (its frozen lake, #adcceb) the cream holds 7.1:1 and the ice 6:1.
-   --hero-pad is its own padding, which the header over it adds to. */
+/* The dark photo fills the hero under a flat navy scrim. Even over its
+   brightest pixel, cream holds 5.7:1 and ice 4.8:1. The light theme
+   replaces the photo and scrim in index-light.css. --hero-pad is its own
+   padding, which the header over it adds to. */
 .section-hero {
     --hero-pad: 5.5rem;
     position: relative;
     overflow: hidden;
     overflow: clip;
     padding: var(--hero-pad) 0;
-    /* The scrim's navy, shown until the photo loads. */
-    background: #08111e;
+    background-size: cover;
+    background-position: center 58%;
+    /* The scrim's navy, shown until the dark photo loads. */
+    background-color: #08111e;
     color: var(--brand-cream);
 }
 
-/* The page's focus color is too dark for the photo in the light theme, so the
-   hero's controls use the ice, 5.7:1 or better over the scrim. */
+/* The dark hero's controls use ice focus rings; the light theme replaces them
+   with deep blue in index-light.css. */
 .section-hero a:focus-visible {
     outline-color: var(--brand-ice);
-}
-
-.hero-photo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 58%;
 }
 
 .section-hero::before {
     content: "";
     position: absolute;
     inset: 0;
+    z-index: 1;
     background: rgba(8, 17, 30, .65);
 }
 
 .hero-inner {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: grid;
     grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
     align-items: center;
@@ -268,8 +262,8 @@ iframe:focus-visible {
     text-wrap: balance;
 }
 
-/* The ice, as for the hero's focus rings: the page's link color is too dark
-   for the photo in the light theme. The ice holds 6:1 over the scrim. */
+/* The dark hero uses ice for its link; the light theme replaces it with deep
+   blue to keep contrast over the sunlit photo. */
 .tagline a {
     color: var(--brand-ice);
 }
@@ -845,8 +839,7 @@ iframe:focus-visible {
    Verdana); 23em keeps 375px phones over the hero, and if a wide font still
    wraps the links, the header (about 6.1rem) stays inside the hero's top
    padding. Narrower, the links wrap, so the header's height isn't known and
-   it stays above the hero instead. Its colors are the hero's, fixed in both
-   themes. */
+   it stays above the hero instead. Its colors follow the hero's theme. */
 @media not all and (max-width: 23em) {
     .site-header-over-hero {
         position: absolute;
@@ -855,8 +848,8 @@ iframe:focus-visible {
         left: 0;
         z-index: 2;
         border-bottom: none;
-        /* The scrim's navy, fading out. The scrim alone holds the cream at
-           7.1:1, so the fade only adds contrast. */
+        /* The dark scrim's navy fades out; the light theme replaces it with
+           an ice-white fade. */
         background: linear-gradient(rgba(8, 17, 30, .6), rgba(8, 17, 30, 0));
     }
 
@@ -865,8 +858,7 @@ iframe:focus-visible {
         color: var(--brand-cream);
     }
 
-    /* As in the hero: the ice, since the light theme's focus color is too
-       dark for the photo. */
+    /* As in the dark hero, ice marks focus; light mode uses deep blue. */
     .site-header-over-hero a:focus-visible,
     .site-header-over-hero button:focus-visible {
         outline-color: var(--brand-ice);

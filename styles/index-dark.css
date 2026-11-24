@@ -36,3 +36,7 @@ html {
 .theme-toggle .icon-sun {
     display: block;
 }
+
+.section-hero {
+    background-image: url("../images/hero-lake-dark.webp");
+}

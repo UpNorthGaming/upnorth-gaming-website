@@ -25,7 +25,7 @@ _games/                     Released games, one Markdown file each (no pages of 
 styles/                     index-common.css, index-light.css, index-dark.css
 scripts/                    dark-mode.js, overview-return.js, serve.sh (local server)
 scripts/brand/              Unpublished masters, asset script, link preview source
-images/                     logo.webp, logo-mark.png, hero-winter.webp, og-image.png, treeline.svg
+images/                     logo.webp, logo-mark.png, hero-lake-light.webp, hero-lake-dark.webp, og-image.png, treeline.svg
 images/devlog/              Post images
 images/games/               Game covers
 favicon.png, favicon.ico, apple-touch-icon.png
@@ -49,7 +49,7 @@ AGENTS.md, CLAUDE.md, README.md, DEVELOPMENT.md
   - **Light** ("snow at noon"): an ice-tinted white, with navy text.
   - **Dark** ("night up north"): the navy-black of the hero's sky, with cream text.
 - Gold is a fill color in both themes, never text on the page background.
-- The hero is the same in both themes: the winter night photo under a flat navy scrim, with fixed colors that don't follow the theme. On the home page (`hero: true` in its front matter), the header lies over its top and takes its colors.
+- The hero has matching sunlit and twilight lake photos. Light mode washes its photo with ice-white and uses navy copy; dark mode uses a navy scrim with cream and ice copy. On the home page (`hero: true` in its front matter), the header lies over the hero and takes its theme's colors.
 - `styles/AGENTS.md` holds the token contract, type scale, layout, components, and CSS conventions.
 - **Theme switching.** Both theme sheets load on every page, media-scoped to `prefers-color-scheme`, so the page follows the OS with no JavaScript. `scripts/dark-mode.js` acts only when the toggle has stored an override.
 
@@ -59,7 +59,8 @@ AGENTS.md, CLAUDE.md, README.md, DEVELOPMENT.md
 |---|---|
 | A theme's `--bg` | The `theme-color` metas in `_includes/head.html`, `scripts/dark-mode.js`, and, for dark, the link preview |
 | Logo | `scripts/brand/logo-master.png`, then rerun `scripts/brand/export_assets.py` (header mark, favicons, touch icon), re-encode `logo.webp`, and re-render the link preview |
-| Name, tagline, hero copy, or hero photo | `index.html` and `scripts/brand/og-image.html` together, then re-render the link preview |
+| Name, tagline, or hero copy | `index.html` and `scripts/brand/og-image.html` together, then re-render the link preview |
+| Hero scenery | Both theme sheets, the masters and WebP images, and the dark link preview |
 | An image's pixel size | Its `<img>` `width` and `height` (or a post's `images` entry, or a game's `cover`) |
 | The platform names (`Mobile`, `Console`, `board.fun`) | `_posts/AGENTS.md`, `_games/AGENTS.md`, `DEVELOPMENT.md`, and `.agents/checks/post-rules.md` and `game-rules.md` |
 | A home section's `id`, heading, or order | The nav in `_includes/header.html` and the hero's buttons in `index.html`. If the nav's width changes, re-measure the header's `29em` and `23em` queries in `index-common.css` |
@@ -103,12 +104,12 @@ They have no pages (`output: false`). The home page's "Our games" section shows 
 - Page copy is plain and concrete, with no hype. Headings are sentence case. Side-by-side copy (like the developer cards) stays about the same length, so the columns wrap to the same number of lines.
 - Say each thing once. The studio's name is in the hero's logo and the page title, so the header shows only the emblem, and on the home page, where the hero's logo sits right below it, not even that; the tagline names the platforms, so they get no section of their own.
 - The meta description reads "UpNorth Gaming is …: …".
-- Alt text describes what's visible, in one sentence a listener can picture. Decorative images, like the hero photo behind the logo, get `alt=""`. The header's emblem (on every page but the home page) is the home link's only content, so its alt is the studio's name.
+- Alt text describes what's visible, in one sentence a listener can picture. The decorative hero scenery is a CSS background; the header's emblem (on every page but the home page) is the home link's only content, so its alt is the studio's name.
 - Code comments say why, in full sentences in the present tense. They name the source of a value and anything that must change with it. Use caps only to stop a plausible mistake, like renaming `overview-return`.
 
 ## Images
 
-- `images/hero-winter.webp`: `scripts/brand/hero-winter-master.jpg` encoded with `cwebp -q 80 -m 6`, at 1536x1024.
+- `images/hero-lake-light.webp` and `images/hero-lake-dark.webp`: matching 1774x887 generated winter landscapes, encoded from the corresponding `scripts/brand/hero-lake-*-master.png` files with `cwebp -q 84 -m 6`. The theme sheets choose the decorative CSS background, so only the active variant loads even with a stored theme override.
 - `images/treeline.svg`: a hand-drawn 480x48 tile of pines on a ground strip, used only as a CSS mask (see `.treeline` in [`styles/AGENTS.md`](styles/AGENTS.md)). Keep every tree inside the tile so it repeats seamlessly, and keep the shapes black on transparent.
 - `images/logo.webp`, `images/logo-mark.png`, and the icons: generated by `scripts/brand/export_assets.py` (see [`scripts/brand/AGENTS.md`](scripts/brand/AGENTS.md)).
 - **Developer avatars** are initials until there are photos. To add one, square-crop the photo to 144x144 (2x the avatar) in sRGB, save it as `images/team/<name>.jpg`, and put an `<img>` (with `alt`, `width`, `height`, `loading="lazy"`, and `decoding="async"`) inside that developer's `.avatar` in place of the initials. Then drop the avatar's `aria-hidden`.

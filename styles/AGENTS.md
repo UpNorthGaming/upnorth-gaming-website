@@ -12,7 +12,7 @@ Three sheets, published verbatim (no front matter):
 
 ## Flat
 
-No glass, `backdrop-filter`, glows, gradients, gradient text, or decorative `box-shadow`. The one exception is `.site-header-over-hero` (see Components), whose fade of the scrim's navy blends the header into the hero's photo. Use these instead:
+No glass, `backdrop-filter`, glows, gradients, gradient text, or decorative `box-shadow`. The one exception is `.site-header-over-hero` (see Components), whose theme-colored fade blends the header into the hero's photo. Use these instead:
 - **Depth:** a solid `--surface` on `--bg`, separated by a 1px `--hairline`. A solid `--band` sets a section apart.
 - **Hover:** a color change. A link card's border and title turn `--accent-text`; a button's fill shifts. Nothing lifts or scales.
 - **Shape:** radius `.75rem` (`--radius`) for cards and media, `.55rem` for buttons, and `999px` for tags.
@@ -38,7 +38,7 @@ Both theme sheets define all of these on `:root`, after `color-scheme`. Note eac
 
 ## The hero
 
-The hero is the same in both themes. The night photo (`.hero-photo`) sits under `.section-hero::before`, a flat `rgba(8, 17, 30, .65)` scrim, and its text uses the `--brand-*` colors directly. The tagline's link and the hero's focus rings are ice, since `--accent-text` is too dark for the photo in the light theme. The scrim's strength comes from the photo's brightest .5% (`#adcceb`, on the lake): cream holds 7.1:1 there and ice 6:1. Re-measure if the photo or scrim changes.
+The hero uses matching lake scenery as a decorative CSS background in the theme sheets. This keeps the image aligned with the synchronous stylesheet override and loads only the selected variant. Dark mode uses a flat `rgba(8, 17, 30, .65)` scrim and cream and ice copy. Light mode uses a flat `rgba(244, 248, 251, .65)` wash, navy copy, and `#0a3654` for links and the second heading line. Across the composited images, dark mode holds at least 5.7:1 for cream and 4.8:1 for ice; light mode holds at least 5.3:1 for navy and 4.8:1 for `#0a3654`. Re-measure if the images or scrims change.
 
 ## Type
 
